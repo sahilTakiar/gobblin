@@ -19,6 +19,7 @@ import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledFuture;
 
 import org.apache.helix.HelixManager;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,6 +28,7 @@ import com.google.common.collect.Maps;
 import gobblin.metrics.GobblinMetrics;
 import gobblin.runtime.AbstractTaskStateTracker;
 import gobblin.runtime.Task;
+import gobblin.runtime.util.TaskMetrics;
 
 
 /**
@@ -77,6 +79,7 @@ public class GobblinHelixTaskStateTracker extends AbstractTaskStateTracker {
         this.scheduledReporters.remove(task.getTaskId()).cancel(false);
       }
     } finally {
+      TaskMetrics.remove(task.getTaskState());
       task.markTaskCompletion();
     }
 
