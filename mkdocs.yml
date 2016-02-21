@@ -25,7 +25,7 @@ pages:
         - Job Execution History Store: user-guide/Job-Execution-History-Store.md
         - Gobblin Build Options: user-guide/Gobblin-Build-Options.md
         - Troubleshooting: user-guide/Troubleshooting.md
-        - FAQs: FAQs.md
+        - FAQs: user-guide/FAQs.md
     - Case Studies:
         - Kafka-HDFS Ingestion: case-studies/Kafka-HDFS-Ingestion.md
         - Publishing Data to S3: case-studies/Publishing-Data-to-S3.md
