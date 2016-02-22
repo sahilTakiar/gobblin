@@ -1,3 +1,7 @@
+# Table of Contents
+
+[TOC]
+
 # Introduction
 
 Gobblin jobs can be scheduled on a recurring basis using a few different tools. Gobblin ships with a built in [Quartz Scheduler](https://quartz-scheduler.org/). Gobblin also integrates with a few other third party tools.

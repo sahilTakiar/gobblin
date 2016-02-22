@@ -1,27 +1,13 @@
 Table of Contents
 --------------------
 
-- [Introduction](#introduction)
-- [Hadoop and S3](#hadoop-and-s3)
-  - [The `s3a` File System](#the-s3a-file-system)
-  - [The `s3` File System](#the-s3-file-system)
-- [Getting Gobblin to Publish to S3](#getting-gobblin-to-publish-to-s3)
-  - [Signing Up For AWS](#signing-up-for-aws)
-  - [Setting Up EC2](#setting-up-ec2)
-    - [Launching an EC2 Instance](#launching-an-ec2-instance)
-    - [EC2 Package Installations](#ec2-package-installations)
-      - [Installing Java](#installing-java)
-  - [Setting Up S3](#setting-up-s3)
-  - [Setting Up Gobblin on EC2](#setting-up-gobblin-on-ec2)
-  - [Configuring Gobblin on EC2](#configuring-gobblin-on-ec2)
-  - [Launching Gobblin on EC2](#launching-gobblin-on-ec2)
-- [Writing to S3 Outside EC2](#writing-to-s3-outside-ec2)
+[TOC]
 
 # Introduction
 
 While Gobblin is not tied to any specific cloud provider, [Amazon Web Services](https://aws.amazon.com/) is a popular choice. This document will outline how Gobblin can publish data to [S3](https://aws.amazon.com/s3/). Specifically, it will provide a step by step guide to help setup Gobblin on Amazon [EC2](https://aws.amazon.com/ec2/), run Gobblin on EC2, and publish data from EC2 to S3.
 
-It is recommended to configure Gobblin to first write data to [EBS](https://aws.amazon.com/ebs/), and then publish the data to S3. This is the recommended approach because there are a few caveats when working with with S3. See the [Hadoop and S3](https://github.com/linkedin/gobblin/wiki/Publishing-Data-to-S3#hadoop-and-s3) section for more details.
+It is recommended to configure Gobblin to first write data to [EBS](https://aws.amazon.com/ebs/), and then publish the data to S3. This is the recommended approach because there are a few caveats when working with with S3. See the [Hadoop and S3](#hadoop-and-s3) section for more details.
 
 This document will also provide a step by step guide for launching and configuring an EC2 instance and creating a S3 bucket. However, it is by no means a source of truth guide to working with AWS, it will only provide high level steps. The best place to learn about how to use AWS is through the [Amazon documentation](https://aws.amazon.com/documentation/).
 
@@ -132,7 +118,7 @@ curl http://central.maven.org/maven2/org/apache/hadoop/hadoop-aws/2.6.0/hadoop-a
 
 ## Configuring Gobblin on EC2
 
-Assuming we are running Gobblin in [standalone mode](https://github.com/linkedin/gobblin/wiki/Gobblin%20Deployment#Standalone-Deployment), the following configuration options need to be modified in the file `gobblin-dist/conf/gobblin-standalone.properties`.
+Assuming we are running Gobblin in [standalone mode](../user-guide/Gobblin-Deployment#Standalone-Deployment), the following configuration options need to be modified in the file `gobblin-dist/conf/gobblin-standalone.properties`.
 
 * Add the key `data.publisher.fs.uri` and set it to `s3a://gobblin-demo-bucket/`
     * This configures the job to publish data to the S3 bucket named `gobblin-demo-bucket`
@@ -144,7 +130,7 @@ Assuming we are running Gobblin in [standalone mode](https://github.com/linkedin
 
 ## Launching Gobblin on EC2
 
-Assuming we want Gobblin to run in standalone mode, follow the usual steps for [standalone deployment](https://github.com/linkedin/gobblin/wiki/Gobblin%20Deployment#Standalone-Deployment).
+Assuming we want Gobblin to run in standalone mode, follow the usual steps for [standalone deployment](../user-guide/Gobblin-Deployment#Standalone-Deployment).
 
 For the sake of this walkthrough, we will launch the Gobblin [wikipedia example](https://github.com/linkedin/gobblin/blob/master/gobblin-example/src/main/resources/wikipedia.pull). Directions on how to run this example can be found [here](https://github.com/linkedin/gobblin/wiki/Getting%20Started). The command to launch Gobblin should look similar to:
 ```

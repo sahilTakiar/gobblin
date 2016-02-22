@@ -1,3 +1,8 @@
+Table of Contents
+-----------------
+
+[TOC]
+
 Gobblin allows partitioning output data using a writer partitioner. This allows, for example, to write timestamped records to a different file depending on the timestamp of the record.
 
 To partition output records, two things are needed:

@@ -1,10 +1,7 @@
 Table of Contents
 --------------------
-* [Deployment Overview] (#Deployment-Overview)
-* [Standalone Architecture] (#Standalone-Architecture)
-* [Standalone Deployment] (#Standalone-Deployment)
-* [Hadoop MapReduce Architecture] (#Hadoop-MapReduce-Architecture)
-* [Hadoop MapReduce Deployment] (#Hadoop-MapReduce-Deployment)
+
+[TOC]
 
 Deployment Overview <a name="Standalone-Overview"></a>
 --------------------
@@ -116,7 +113,7 @@ A mapper in a Gobblin MapReduce job follows the step below to run tasks assigned
 1. Starting the `TaskExecutor` that is responsible for executing tasks in a configurable-size thread pool and the `MRTaskStateTracker` that is responsible for keep tracking of the state of running tasks in the mapper. 
 2. Reading the next input record that is the path to the file storing a serialized `WorkUnit`.
 3. Deserializing the `WorkUnit` and adding it to the list of `WorkUnit`s to do. If the input is a `MultiWorkUnit`, the `WorkUnit`s it wraps are all added to the list. Steps 2 and 3 are repeated until all assigned `WorkUnit`s are deserialized and added to the list.
-4. For each `WorkUnit` on the list of `WorkUnit`s to do, creating a task for the `WorkUnit`, registering the task with the `MRTaskStateTracker`, and submitting the task to the `TaskExecutor` to run. Note that the tasks may run in parallel if the `TaskExecutor` is [configured](https://github.com/linkedin/gobblin/wiki/Configuration%20Properties%20Glossary#taskexecutorthreadpoolsize) to have more than one thread in its thread pool.
+4. For each `WorkUnit` on the list of `WorkUnit`s to do, creating a task for the `WorkUnit`, registering the task with the `MRTaskStateTracker`, and submitting the task to the `TaskExecutor` to run. Note that the tasks may run in parallel if the `TaskExecutor` is [configured](Configuration-Properties-Glossary#taskexecutorthreadpoolsize) to have more than one thread in its thread pool.
 4. Waiting for all the submitted tasks to finish.
 5. Upon completion of all the submitted tasks, writing out the state of each task into a file that will be read by the `MRJobLauncher` when collecting task states.
 6. Going back to step 2 and reading the next input record if available.

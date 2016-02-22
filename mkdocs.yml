@@ -31,8 +31,29 @@ pages:
     - Case Studies:
         - Kafka-HDFS Ingestion: case-studies/Kafka-HDFS-Ingestion.md
         - Publishing Data to S3: case-studies/Publishing-Data-to-S3.md
+    - Gobblin Metrics:
+        - Quick Start: metrics/Gobblin-Metrics.md
+        - Existing Reporters: metrics/Existing-Reporters.md
+        - Metrics for Gobblin ETL: metrics/Metrics-for-Gobblin-ETL.md
+        - Gobblin Metrics Architecture: metrics/Gobblin-Metrics-Architecture.md
+        - Implementing New Reporters: metrics/Implementing-New-Reporters.md
+        - Gobblin Metrics Performance: metrics/Gobblin-Metrics-Performance.md
+    - Developer Guide:
+        - Customization for New Source: developer-guide/Customization-for-New-Source.md
+        - Customization for Converter and Operator: developer-guide/Customization-for-Converter-and-Operator.md
+        - Code Style Guide: developer-guide/CodingStyle.md
+        - IDE setup: developer-guide/IDE-setup.md
+        - Monitoring Design: developer-guide/Monitoring-Design.md
+    - Project:
+        - Feature List: project/Feature-List.md
+        - Contributors and Team: project/Team.md
+        - Talks and Tech Blog Posts: project/Talks-and-Tech-Blogs.md
+        - News and Roadmap: project/News.md
+        - Posts: project/Posts.md
+    - Miscellaneous:
+        - Camus to Gobblin Migration: miscellaneous/Camus-to-Gobblin-Migration.md
+        - Exactly Once Support: miscellaneous/Exactly-Once-Support.md
 
 markdown_extensions:
   - toc:
-      toc_depth: 2
       permalink: True

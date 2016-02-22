@@ -1,17 +1,7 @@
 Table of Contents
 --------------------
-* [Getting Started](https://github.com/linkedin/gobblin/wiki/Kafka-HDFS-Ingestion#getting-started)
- * [Standalone](https://github.com/linkedin/gobblin/wiki/Kafka-HDFS-Ingestion#standalone)
- * [MapReduce](https://github.com/linkedin/gobblin/wiki/Kafka-HDFS-Ingestion#mapreduce)
-* [Setting up Kafka-HDFS Ingestion Jobs](https://github.com/linkedin/gobblin/wiki/Kafka-HDFS-Ingestion#setting-up-kafka-hdfs-ingestion-jobs)
- * [Job Constructs](https://github.com/linkedin/gobblin/wiki/Kafka-HDFS-Ingestion#job-constructs)
- * [Job Config Properties](https://github.com/linkedin/gobblin/wiki/Kafka-HDFS-Ingestion#job-config-properties)
- * [Metrics And Events](https://github.com/linkedin/gobblin/wiki/Kafka-HDFS-Ingestion#metrics-and-events)
- * [Merging and Grouping Workunits in `KafkaSource`](https://github.com/linkedin/gobblin/wiki/Kafka-HDFS-Ingestion#merging-and-grouping-workunits-in-kafkasource)
-   * [Single-Level Packing](https://github.com/linkedin/gobblin/wiki/Kafka-HDFS-Ingestion#single-level-packing)
-    * [Bi-Level Packing](https://github.com/linkedin/gobblin/wiki/Kafka-HDFS-Ingestion#bi-level-packing)
-    * [Average Record Size-Based Workunit Size Estimator](https://github.com/linkedin/gobblin/wiki/Kafka-HDFS-Ingestion#average-record-size-based-workunit-size-estimator)
-    * [Average Record Time-Based Workunit Size Estimator](https://github.com/linkedin/gobblin/wiki/Kafka-HDFS-Ingestion#average-record-time-based-workunit-size-estimator)
+
+[TOC]
 
 # Getting Started
 
@@ -21,7 +11,7 @@ This section helps you set up a quick-start job for ingesting Kafka topics on a 
 
 * Setup a single node Kafka broker by following the [Kafka quick start guide](http://kafka.apache.org/documentation.html#quickstart). Suppose your broker URI is `localhost:9092`, and you've created a topic "test" with two events "This is a message" and "This is a another message".
 
-* The remaining steps are the same as the [Wikipedia example](https://github.com/linkedin/gobblin/wiki/Getting%20Started), except using the following job config properties:
+* The remaining steps are the same as the [Wikipedia example](../Getting-Started), except using the following job config properties:
 
 ```
 job.name=GobblinKafkaQuickStart
@@ -117,7 +107,7 @@ After the job finishes, the job output file will be in `/gobblintest/job-output/
 ## Job Constructs
 **Source and Extractor**
 
-Gobblin provides two abstract classes, [`KafkaSource`](https://github.com/linkedin/gobblin/blob/master/gobblin-core/src/main/java/gobblin/source/extractor/extract/kafka/KafkaSource.java) and [`KafkaExtractor`](https://github.com/linkedin/gobblin/blob/master/gobblin-core/src/main/java/gobblin/source/extractor/extract/kafka/KafkaExtractor.java). `KafkaSource` creates a workunit for each Kafka topic partition to be pulled, then merges and groups the workunits based on the desired number of workunits specified by property `mr.job.max.mappers` (this property is used in both standalone and MR mode). More details about how workunits are merged and grouped is available [here](https://github.com/linkedin/gobblin/wiki/Kafka-HDFS-Ingestion#merging-and-grouping-workunits-in-kafkasource). `KafkaExtractor` extracts the partitions assigned to a workunit, based on the specified low watermark and high watermark.
+Gobblin provides two abstract classes, [`KafkaSource`](https://github.com/linkedin/gobblin/blob/master/gobblin-core/src/main/java/gobblin/source/extractor/extract/kafka/KafkaSource.java) and [`KafkaExtractor`](https://github.com/linkedin/gobblin/blob/master/gobblin-core/src/main/java/gobblin/source/extractor/extract/kafka/KafkaExtractor.java). `KafkaSource` creates a workunit for each Kafka topic partition to be pulled, then merges and groups the workunits based on the desired number of workunits specified by property `mr.job.max.mappers` (this property is used in both standalone and MR mode). More details about how workunits are merged and grouped is available [here](#merging-and-grouping-workunits-in-kafkasource). `KafkaExtractor` extracts the partitions assigned to a workunit, based on the specified low watermark and high watermark.
 
 To use them in a Kafka-HDFS ingestion job, one should subclass `KafkaExtractor` and implement method `decodeRecord(MessageAndOffset)`, which takes a `MessageAndOffset` object pulled from the Kafka broker and decodes it into a desired object. One should also subclass `KafkaSource` and implement `getExtractor(WorkUnitState)` which should return an instance of the Extractor class.
 
@@ -129,7 +119,7 @@ Gobblin currently provides two concrete implementations: [`KafkaSimpleSource`](h
 
 **Writer and Publisher**
 
-Any desired writer and publisher can be used, e.g., one may use the [`AvroHdfsDataWriter`](https://github.com/linkedin/gobblin/blob/master/gobblin-core/src/main/java/gobblin/writer/AvroHdfsDataWriter.java) and the [`BaseDataPublisher`](https://github.com/linkedin/gobblin/blob/master/gobblin-core/src/main/java/gobblin/publisher/BaseDataPublisher.java), similar as the [Wikipedia example job](https://github.com/linkedin/gobblin/wiki/Getting%20Started). If plain text output file is desired, one may use [`SimpleDataWriter`](https://github.com/linkedin/gobblin/blob/master/gobblin-core/src/main/java/gobblin/writer/SimpleDataWriter.java).
+Any desired writer and publisher can be used, e.g., one may use the [`AvroHdfsDataWriter`](https://github.com/linkedin/gobblin/blob/master/gobblin-core/src/main/java/gobblin/writer/AvroHdfsDataWriter.java) and the [`BaseDataPublisher`](https://github.com/linkedin/gobblin/blob/master/gobblin-core/src/main/java/gobblin/publisher/BaseDataPublisher.java), similar as the [Wikipedia example job](../Getting-Started). If plain text output file is desired, one may use [`SimpleDataWriter`](https://github.com/linkedin/gobblin/blob/master/gobblin-core/src/main/java/gobblin/writer/SimpleDataWriter.java).
 
 ## Job Config Properties
 

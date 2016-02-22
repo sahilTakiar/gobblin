@@ -1,3 +1,8 @@
+Table of Contents
+-------------------
+
+[TOC]
+
 Overview
 --------------------
 As a framework for ingesting potentially huge volume of data from many different sources, it's critical to monitor the health and status of the system and job executions. Gobblin employs a variety of approaches introduced below for this purpose. All the approaches are optional and can be configured to be turned on and off in different combinations through the framework and job configurations. 

@@ -1,24 +1,19 @@
 Table of Contents
 --------------------
-* [Job Configuration Basics](#job-configuration-basics)
-* [Hierarchical Structure of Job Configuration Files](#hierarchical-structure-of-job-configuration-files)
-* [Password Encryption](#password-encryption)
-* [Adding or Changing Job Configuration Files](#adding-or-changing-job-configuration-files)
-* [Scheduled Jobs](#scheduled-jobs)
-* [One Time Jobs](#one-time-jobs)
-* [Disabled Jobs](#disabled-jobs)
+
+[TOC]
 
 Job Configuration Basics
 --------------------
 A Job configuration file is a text file with extension `.pull` or `.job` that defines the job properties that can be loaded into a Java [Properties](http://docs.oracle.com/javase/7/docs/api/java/util/Properties.html) object. Gobblin uses [commons-configuration](http://commons.apache.org/proper/commons-configuration/) to allow variable substitutions in job configuration files. You can find some example Gobblin job configuration files [here](https://github.com/linkedin/gobblin/tree/master/gobblin-core/src/main/resources). 
 
-A Job configuration file typically includes the following properties, in additional to any mandatory configuration properties required by the custom [Gobblin Constructs](https://github.com/linkedin/gobblin/wiki/Gobblin-Architecture#gobblin-constructs) classes. For a complete reference of all configuration properties supported by Gobblin, please refer to [Configuration Properties Glossary](https://github.com/linkedin/gobblin/wiki/Configuration%20Properties%20Glossary).
+A Job configuration file typically includes the following properties, in additional to any mandatory configuration properties required by the custom [Gobblin Constructs](Gobblin-Architecture#gobblin-constructs) classes. For a complete reference of all configuration properties supported by Gobblin, please refer to [Configuration Properties Glossary](Configuration-Properties-Glossary).
 
 * `job.name`: job name.
 * `job.group`: the group the job belongs to.
 * `source.class`: the `Source` class the job uses.
 * `converter.classes`: a comma-separated list of `Converter` classes to use in the job. This property is optional.
-* Quality checker related configuration properties: a Gobblin job typically has both row-level and task-level quality checkers specified. Please refer to [Quality Checker Properties](https://github.com/linkedin/gobblin/wiki/Configuration%20Properties%20Glossary#Quality-Checker-Properties) for configuration properties related to quality checkers. 
+* Quality checker related configuration properties: a Gobblin job typically has both row-level and task-level quality checkers specified. Please refer to [Quality Checker Properties](user-guide/Configuration-Properties-Glossary#Quality-Checker-Properties) for configuration properties related to quality checkers. 
 
 Hierarchical Structure of Job Configuration Files
 --------------------

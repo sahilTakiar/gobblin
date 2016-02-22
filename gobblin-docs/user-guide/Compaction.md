@@ -1,9 +1,7 @@
 Table of Contents
 --------------------
 
-* [MapReduce Compactor](https://github.com/linkedin/gobblin/wiki/Compaction#mapreduce-compactor)
-* [Hive Compactor](https://github.com/linkedin/gobblin/wiki/Compaction#hive-compactor)
-   - [Handling Late Records](https://github.com/linkedin/gobblin/wiki/Compaction#handling-late-records) 
+[TOC]
 
 Compaction can be used to post-process files pulled by Gobblin with certain semantics. Deduplication is one of the common reasons to do compaction, e.g., you may want to
 
@@ -18,20 +16,20 @@ This is because duplicates can be generated for multiple reasons including both 
 
 Gobblin provides two compactors out-of-the-box, a MapReduce compactor and a Hive compactor.
 
-## MapReduce Compactor
+# MapReduce Compactor
 
 The MapReduce compactor can be used to deduplicate on all or certain fields of the records. For duplicate records, one of them will be preserved; there is no guarantee which one will be preserved.
 
 A use case of MapReduce Compactor is for Kafka records deduplication. We will use the following example use case to explain the MapReduce Compactor.
 
-### Example Use Case
+## Example Use Case
 
 Suppose we ingest data from a Kafka broker, and we would like to publish the data by hour and by day, both of which are deduplicated:
 - Data in the Kafka broker is first ingested into an `hourly_staging` folder, e.g., `/data/kafka_topics/NewUserEvent/hourly_staging/2015/10/29/08...`
 - A compaction with deduplication runs hourly, consumes data in `hourly_staging` and publish data into `hourly`, e.g., `/data/kafka_topics/NewUserEvent/hourly/2015/10/29/08...`
 - A non-deduping compaction runs daily, consumes data in `hourly` and publish data into `daily`, e.g., `/data/kafka_topics/NewUserEvent/daily/2015/10/29...`
 
-### Basic Usage
+## Basic Usage
 
 `MRCompactor.compact()` is the entry point for MapReduce-based compaction. The input data to be compacted is specified by `compaction.input.dir`. Each subdir under `compaction.input.dir` is considered a _topic_. Each topic may contain multiple _datasets_, each of which is a unit for compaction. It is up to `MRCompactorJobPropCreator` to determine what is a dataset under each topic. If a topic has multiple levels of folders, subsequent levels can be specified using `compaction.input.subdir`.
 
@@ -51,7 +49,7 @@ compaction.job.runner.class=gobblin.compaction.mapreduce.avro.MRCompactorAvroKey
 
 If your data format is not Avro, you can implement a different job runner class for deduplicating your data format. `compaction.timebased.max.time.ago` and `compaction.timebased.min.time.ago` are used to control the earliest and latest folders to be processed, e.g., if there values are 3h and 1h, respectively, and suppose the current time is 10/07 9:20am, it will not process folders on 10/07/06 or before (since they are more than 3 hours ago) or folders on 10/07/09 (since they are less than 1 hour ago).
 
-### Non-deduping Compaction via Map-only Jobs
+## Non-deduping Compaction via Map-only Jobs
 
 There are two types of Non-deduping compaction.
 - **Type 1**: deduplication is not needed, for example you simply want to consolidate files in 24 hourly folders into a single daily folder.
@@ -61,7 +59,7 @@ Property `compaction.input.deduplicated` specifies whether the input data are de
 
 The reason these two types of compaction need to be separated is because of late data handling, which we will explain next.
 
-### Handling Late Records
+## Handling Late Records
 
 Late records are records that arrived at a folder after compaction on this folder has started. We explain how Gobblin handles late records using the following example.
 
@@ -96,7 +94,7 @@ The `_COMPACTION_COMPLETE` file will be only be created if it is a regular compa
 
 One way of reducing the chance of seeing late records is to verify data completeness before running compaction, which will be explained next.
 
-### Verifying Data Completeness Before Compaction
+## Verifying Data Completeness Before Compaction
 
 Besides aborting the compaction job for a dataset if new data in the input folder is found, another way to reduce the chance of seeing late events is to verify the completeness of input data before running compaction. To do so, set `compaction.completeness.verification.enabled=true`, extend `DataCompletenessVerifier.AbstractRunner` and put in your verification logic, and pass it via `compaction.completeness.verification.class`.
 
@@ -104,7 +102,7 @@ When data completeness verification is enabled, `MRCompactor` will verify data c
 
 It is possible to control which topics should or should not be verified via `compaction.completeness.verification.whitelist` and `compaction.completeness.verification.blacklist`. It is also possible to set a timeout for data completeness verification via `compaction.completeness.verification.timeout.minutes`. A dataset whose completeness verification timed out can be configured to be either compacted anyway or not compacted.
 
-## Hive Compactor
+# Hive Compactor
 
 The Hive compactor can be used to merge a snapshot with one or multiple deltas. It assumes the snapshot and the deltas meet the following requirements:
 
@@ -117,7 +115,7 @@ In the near future we also plan to support selecting records by timestamps (rath
 
 Note that since delta tables don't have information of deleted records, such information is only available the next time the full snapshot is pulled.
 
-### Usage
+## Usage
 
 After building Gobblin (i.e., `./gradlew clean build`), a zipped file `build/gobblin-compaction/distributions/gobblin-compaction.tar.gz` should be created. It contains a jar file (`gobblin-compaction.jar`), a folder of dependencies (`gobblin-compaction_lib`), and a log4j config file (`log4j.xml`).
 
@@ -144,7 +142,7 @@ The merged data will be written to the HDFS directory specified in `output.datal
 
 The provided log4j config file (`log4j.xml`) prints logs from Gobblin compaction classes to the console, and writes logs from other classes (e.g., Hive classes) to logs/gobblin-compaction.log. Note that for drop table queries (`DROP TABLE IF EXISTS <tablename>`), the Hive JDBC client will throw `NoSuchObjectException` if the table doesn't exist. This is normal and such exceptions should be ignored.
 
-#### Global Config Properties (example: compaction.properties)
+### Global Config Properties (example: compaction.properties)
 
 (1) Required:
 - _**compaction.config.dir**_
@@ -191,7 +189,7 @@ Directory that contains hive-site.xml, if hive-site.xml should be loaded.
 Any hive config property. (e.g., `hive.join.cache.size`). If specified, it will override the corresponding property in hive-site.xml.
 
 
-#### Job Config Properties (example: jobconf/task1.conf)
+### Job Config Properties (example: jobconf/task1.conf)
 
 (1) Required:
 

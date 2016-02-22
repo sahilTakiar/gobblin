@@ -1,12 +1,7 @@
 Table of Contents
 --------------------
-* [Gobblin Architecture Overview] (#gobblin-architecture-overview)
-* [Gobblin Job Flow] (#gobblin-job-flow)
-* [Gobblin Constructs] (#gobblin-constructs)
-* [Gobblin Task Flow] (#gobblin-task-flow)
-* [Job State Management] (#job-state-management)
-* [Handling of Failures] (#handling-of-failures)
-* [Job Scheduling] (#job-scheduling)
+
+[TOC]
 
 Gobblin Architecture Overview
 --------------------
@@ -25,7 +20,7 @@ A Gobblin job consists of a set of tasks, each of which corresponds to a unit of
 
 The Gobblin runtime is responsible for running user-defined Gobblin jobs on the deployment setting of choice. It handles the common tasks including job and task scheduling, error handling and task retries, resource negotiation and management, state management, data quality checking, data publishing, etc.
 
-Gobblin currently supports two deployment modes: the standalone mode on a single node and the Hadoop MapReduce mode on a Hadoop cluster. We are also working on adding support for deploying and running Gobblin as a native application on [YARN](http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html). Details on deployment of Gobblin can be found in [Gobblin Deployment](https://github.com/linkedin/gobblin/wiki/Gobblin%20Deployment).
+Gobblin currently supports two deployment modes: the standalone mode on a single node and the Hadoop MapReduce mode on a Hadoop cluster. We are also working on adding support for deploying and running Gobblin as a native application on [YARN](http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html). Details on deployment of Gobblin can be found in [Gobblin Deployment](user-guide/Gobblin-Deployment).
 
 The running and operation of Gobblin are supported by a few components and utilities (illustrated by the blue boxes in the diagram above) that handle important things such as metadata management, state management, metric collection and reporting, and monitoring. 
 

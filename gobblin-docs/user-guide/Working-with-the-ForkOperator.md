@@ -1,16 +1,7 @@
 Table of Contents
 --------------------
 
-* [Overview of the ForkOperator](#overview-of-the-forkoperator)
-* [Using the ForkOperator](#using-the-forkoperator)
- * [Basics of Usage](#basics-of-usage)
- * [Per-Fork Configuration](#per-fork-configuration)
- * [Failure Semantics](#failure-semantics)
- * [Performance Tuning](#performance-tuning)
- * [Comparison with PartitionedDataWriter](#comparison-with-partitioneddatawriter)
-* [Writing your Own ForkOperator](#writing-your-own-forkoperator)
-* [Best Practices](#best-practices)
-* [Example](#example)
+[TOC]
 
 Overview of the ForkOperator
 --------------------

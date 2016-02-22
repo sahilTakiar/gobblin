@@ -1,21 +1,12 @@
-div.col-md-9 h1:first-of-type {
-  text-align: center;
-  font-size: 60px;
-  font-weight: 300;
-}
-
-div.col-md-9 p:first-of-type {
-  text-align: center;
-}
-
-div.col-md-9 p.admonition-title:first-of-type {
-  text-align: left;
-}
-
-div.col-md-9 h1:first-of-type .headerlink {
+/* Work around until the TOC becomes collapsable */
+a.toctree-l4 {
   display: none;
 }
 
-code.no-highlight {
-  color: black;
+a.toctree-l5 {
+  display: none;
+}
+
+a.toctree-l6 {
+  display: none;
 }
