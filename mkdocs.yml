@@ -7,6 +7,8 @@ repo_name: Gobblin
 
 docs_dir: gobblin-docs
 
+theme: readthedocs
+
 pages:
     - Home: index.md
     - Getting Started: Getting-Started.md
@@ -29,3 +31,8 @@ pages:
     - Case Studies:
         - Kafka-HDFS Ingestion: case-studies/Kafka-HDFS-Ingestion.md
         - Publishing Data to S3: case-studies/Publishing-Data-to-S3.md
+
+markdown_extensions:
+  - toc:
+      toc_depth: 2
+      permalink: True
