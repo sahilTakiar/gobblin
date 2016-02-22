@@ -132,7 +132,7 @@ Assuming we are running Gobblin in [standalone mode](../user-guide/Gobblin-Deplo
 
 Assuming we want Gobblin to run in standalone mode, follow the usual steps for [standalone deployment](../user-guide/Gobblin-Deployment#Standalone-Deployment).
 
-For the sake of this walkthrough, we will launch the Gobblin [wikipedia example](https://github.com/linkedin/gobblin/blob/master/gobblin-example/src/main/resources/wikipedia.pull). Directions on how to run this example can be found [here](https://github.com/linkedin/gobblin/wiki/Getting%20Started). The command to launch Gobblin should look similar to:
+For the sake of this walkthrough, we will launch the Gobblin [wikipedia example](https://github.com/linkedin/gobblin/blob/master/gobblin-example/src/main/resources/wikipedia.pull). Directions on how to run this example can be found [here](../Getting-Started). The command to launch Gobblin should look similar to:
 ```
 sh bin/gobblin-standalone.sh start --workdir /home/ec2-user/gobblin-dist/work --logdir /home/ec2-user/gobblin-dist/logs --conf /home/ec2-user/gobblin-dist/config
 ```

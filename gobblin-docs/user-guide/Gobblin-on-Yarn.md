@@ -144,11 +144,7 @@ Both the interval between two Kerberos keytab logins and the interval between tw
 
 ## Configuration Properties
 
-In additional to the common Gobblin configuration properties, documented in [`Configuration Properties Glossary`](https://github.com/linkedin/gobblin/wiki/Configuration%20Properties%20Glossary), Gobblin on Yarn uses the following configuration properties. 
-
-|Test1|Test2|
-|-------------|------------|
-|Hello|`really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really long code`|
+In additional to the common Gobblin configuration properties, documented in [`Configuration Properties Glossary`](Configuration-Properties-Glossary), Gobblin on Yarn uses the following configuration properties. 
 
 |Property|Default Value|Description|
 |-------------|-------------|-------------|
@@ -157,7 +153,7 @@ In additional to the common Gobblin configuration properties, documented in [`Co
 |`gobblin.yarn.work.dir`|`/gobblin`|The working directory (typically on HDFS) for the Gobblin Yarn application.|
 |`gobblin.yarn.app.report.interval.minutes`|5|The interval in minutes between two Gobblin Yarn application status reports.|
 |`gobblin.yarn.max.get.app.report.failures`|4|Maximum allowed number of consecutive failures to get a Yarn `ApplicationReport`.|
-|`gobblin.yarn.email.notification.on.shutdown`|`false`|Whether email notification is enabled or not on shutdown of the `GobblinYarnAppLauncher`. If this is set to `true`, the following configuration properties also need to be set for email notification to work: `email.host`, `email.smtp.port`, `email.user`, `email.password`, `email.from`, and `email.tos`. Refer to [Email Alert Properties](https://github.com/linkedin/gobblin/wiki/Configuration%20Properties%20Glossary#Email-Alert-Properties) for more information on those configuration properties.|
+|`gobblin.yarn.email.notification.on.shutdown`|`false`|Whether email notification is enabled or not on shutdown of the `GobblinYarnAppLauncher`. If this is set to `true`, the following configuration properties also need to be set for email notification to work: `email.host`, `email.smtp.port`, `email.user`, `email.password`, `email.from`, and `email.tos`. Refer to [Email Alert Properties](Configuration-Properties-Glossary#Email-Alert-Properties) for more information on those configuration properties.|
 |`gobblin.yarn.app.master.memory.mbs`|512|How much memory in MBs to request for the container running the Gobblin ApplicationMaster.|
 |`gobblin.yarn.app.master.cores`|1|The number of vcores to request for the container running the Gobblin ApplicationMaster.|
 |`gobblin.yarn.app.master.jars`||A comma-separated list of jars the Gobblin ApplicationMaster depends on but not in the `lib` directory.|

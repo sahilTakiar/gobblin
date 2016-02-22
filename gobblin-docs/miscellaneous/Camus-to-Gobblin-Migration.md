@@ -1,6 +1,6 @@
 This page is a guide for [Camus](https://github.com/linkedin/camus) → Gobblin migration, intended for users and organizations currently using Camus. Camus is LinkedIn's previous-generation Kafka-HDFS pipeline.
 
-It is recommended that one read [Kafka-HDFS Ingestion](https://github.com/linkedin/gobblin/wiki/Kafka-HDFS-Ingestion) before reading this page. This page focuses on the Kafka-related configuration properties in Gobblin vs Camus.
+It is recommended that one read [Kafka-HDFS Ingestion](../case-studies/Kafka-HDFS-Ingestion) before reading this page. This page focuses on the Kafka-related configuration properties in Gobblin vs Camus.
 
 ## Advantages of Migrating to Gobblin
 
@@ -8,13 +8,13 @@ It is recommended that one read [Kafka-HDFS Ingestion](https://github.com/linked
 
 **Performance**: The performance of Gobblin in MapReduce mode is comparable to Camus', and faster in some cases (e.g., the average record size of a Kafka topic is not proportional to the average time of pulling a topic) due to a better mapper load balancing algorithm. In the new continuous ingestion mode (currently under development), the performance of Gobblin will further improve.
 
-**Metrics and Monitoring**: Gobblin has a powerful end-to-end metrics collection and reporting module for monitoring purpose, making it much easier to spot problems in time and find the root causes. See the "Gobblin Metrics" section in the wiki and [this post](https://github.com/linkedin/gobblin/wiki/Gobblin-Metrics:-next-generation-instrumentation-for-applications) for more details.
+**Metrics and Monitoring**: Gobblin has a powerful end-to-end metrics collection and reporting module for monitoring purpose, making it much easier to spot problems in time and find the root causes. See the "Gobblin Metrics" section in the wiki and [this post](../metrics/Gobblin-Metrics-next-generation-instrumentation-for-applications) for more details.
 
-**Features**: In addition to the above, there are several other useful features for Kafka-HDFS ingestion in Gobblin that are not available in Camus, e.g., [handling late events in data compaction](https://github.com/linkedin/gobblin/wiki/Compaction#handling-late-records); dataset retention management; converter and quality checker; all-or-nothing job commit policy, etc. Also, Gobblin is under active development and new features are added frequently.
+**Features**: In addition to the above, there are several other useful features for Kafka-HDFS ingestion in Gobblin that are not available in Camus, e.g., [handling late events in data compaction](../user-guide/Compaction#handling-late-records); dataset retention management; converter and quality checker; all-or-nothing job commit policy, etc. Also, Gobblin is under active development and new features are added frequently.
 
 ## Kafka Ingestion Related Job Config Properties
 
-This list contains Kafka-specific properties. For general configuration properties please refer to [Configuration Properties Glossary](https://github.com/linkedin/gobblin/wiki/Configuration%20Properties%20Glossary).
+This list contains Kafka-specific properties. For general configuration properties please refer to [Configuration Properties Glossary](../user-guide/Configuration-Properties-Glossary).
 
 ### Config properties for pulling Kafka topics
 
@@ -43,7 +43,7 @@ Gobblin compaction is comparable to Camus sweeper, which can deduplicate records
 
 2. If you have a hierarchy of Kafka clusters where topics are replicated among the Kafka clusters, duplicate records may be generated during replication.
 
-Below are the configuration properties related to compaction. For more information please visit the MapReduce Compaction section in the [Compaction](https://github.com/linkedin/gobblin/wiki/Compaction) page.
+Below are the configuration properties related to compaction. For more information please visit the MapReduce Compaction section in the [Compaction](../user-guide/Compaction) page.
 
 | Gobblin Property   |  Corresponding Camus Property | Default value |
 |----------|-------------|:------:|
@@ -77,7 +77,7 @@ Remarks:
 * compaction.input.subdir is the subdir name of output topics, if exists. For example, if the input topics are partitioned by hour, e.g., /data/kafka_topics/Topic1/hourly/2015/10/06/20, then compaction.input.subdir should be 'hourly'.
 * compaction.output.subdir is the subdir name of output topics, if exists. For example, if you want to publish compacted data into day-partitioned folders, e.g., /data/compacted_kafka_topics/Topic1/daily/2015/10/06, then compaction.output.subdir should be 'daily'.
 * There are 3 priority levels: high, normal, low. Topics not included in compaction.high.priority.topics or compaction.normal.priority.topics are considered low priority.
-* compaction.input.deduplicated and compaction.output.deduplicated controls the behavior of the compaction regarding deduplication. Please see the [Compaction](https://github.com/linkedin/gobblin/wiki/Compaction) page for more details.
+* compaction.input.deduplicated and compaction.output.deduplicated controls the behavior of the compaction regarding deduplication. Please see the [Compaction](../user-guide/Compaction) page for more details.
 * compaction.timebased.max.time.ago and compaction.timebased.min.time.ago controls the earliest and latest input folders to process, when using `MRCompactorTimeBasedJobPropCreator`. The format is ?m?d?h, e.g., 3m or 2d10h (m = month, not minute). For example, suppose `compaction.timebased.max.time.ago=3d`, `compaction.timebased.min.time.ago=1d` and the current time is 10/07 9am. Folders whose timestamps are before 10/04 9am, or folders whose timestamps are after 10/06 9am will not be processed.
 * compaction.timebased.folder.pattern: time pattern in the folder path, when using `MRCompactorTimeBasedJobPropCreator`. This should come after `compaction.input.subdir`, e.g., if the input folder to a compaction job is `/data/compacted_kafka_topics/Topic1/daily/2015/10/06`, this property should be `YYYY/mm/dd`.
 * compaction.thread.pool.size: how many compaction MR jobs to run concurrently.
@@ -87,14 +87,14 @@ Remarks:
 
 ## Deployment and Checkpoint Management
 
-For deploying Gobblin in standalone or MapReduce mode, please see the [Deployment](https://github.com/linkedin/gobblin/wiki/Gobblin%20Deployment) page.
+For deploying Gobblin in standalone or MapReduce mode, please see the [Deployment](../user-guide/Gobblin-Deployment) page.
 
-Gobblin and Camus checkpoint management are similar in the sense that they both create checkpoint files in each run, and the next run will load the checkpoint files created by the previous run and start from there. Their difference is that Gobblin creates a single checkpoint file per job run or per dataset per job run, and provides two job commit policies: `full` and `partial`. In `full` mode, data are only commited for the job/dataset if all workunits of the job/dataset succeeded. Otherwise, the checkpoint of all workunits/datasets will be rolled back. Camus writes one checkpoint file per mapper, and only supports the `partial` mode. For Gobblin's state management, please refer to the [Wiki page](https://github.com/linkedin/gobblin/wiki/State-Management-and-Watermarks) for more information.
+Gobblin and Camus checkpoint management are similar in the sense that they both create checkpoint files in each run, and the next run will load the checkpoint files created by the previous run and start from there. Their difference is that Gobblin creates a single checkpoint file per job run or per dataset per job run, and provides two job commit policies: `full` and `partial`. In `full` mode, data are only commited for the job/dataset if all workunits of the job/dataset succeeded. Otherwise, the checkpoint of all workunits/datasets will be rolled back. Camus writes one checkpoint file per mapper, and only supports the `partial` mode. For Gobblin's state management, please refer to the [Wiki page](../user-guide/State-Management-and-Watermarks) for more information.
 
 ## Migrating from Camus to Gobblin in Production
 
 If you are currently running in production, you can use the following steps to migrate to Gobblin:
-1. Deploy Gobblin based on the instructions in [Deployment](https://github.com/linkedin/gobblin/wiki/Gobblin%20Deployment) and [Kafka-HDFS Ingestion](https://github.com/linkedin/gobblin/wiki/Kafka-HDFS-Ingestion), and set the properties mentioned in this page as well as other relevant properties in [Configuration Glossary](https://github.com/linkedin/gobblin/wiki/Configuration%20Properties%20Glossary) to the appropriate values.
+1. Deploy Gobblin based on the instructions in [Deployment](../user-guide/Gobblin-Deployment) and [Kafka-HDFS Ingestion](../case-studies/Kafka-HDFS-Ingestion), and set the properties mentioned in this page as well as other relevant properties in [Configuration Glossary](../user-guide/Configuration-Properties-Glossary) to the appropriate values.
 2. Whitelist the topics in Gobblin ingestion, and schedule Gobblin to run at your desired frequency.
 3. Once Gobblin starts running, blacklist these topics in Camus.
-4. If compaction is applicable to you, set up the compaction jobs based on instructions in [Kafka-HDFS Ingestion](https://github.com/linkedin/gobblin/wiki/Kafka-HDFS-Ingestion) and [Compaction](https://github.com/linkedin/gobblin/wiki/Compaction). Whitelist the topics you want to migrate in Gobblin and blacklist them in Camus.
+4. If compaction is applicable to you, set up the compaction jobs based on instructions in [Kafka-HDFS Ingestion](../case-studies/Kafka-HDFS-Ingestion) and [Compaction](../user-guide/Compaction). Whitelist the topics you want to migrate in Gobblin and blacklist them in Camus.

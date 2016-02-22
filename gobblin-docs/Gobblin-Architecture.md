@@ -14,7 +14,7 @@ Gobblin is built around the idea of extensibility, i.e., it should be easy for u
   </figure>
 </p> 
 
-A Gobblin job is built on a set of constructs (illustrated by the light green boxes in the diagram above) that work together in a certain way and get the data extraction work done. All the constructs are pluggable through the job configuration and extensible by adding new or extending existing implementations. The constructs will be discussed in [Gobblin Constructs](https://github.com/linkedin/gobblin/wiki/Gobblin-Architecture#gobblin-constructs).
+A Gobblin job is built on a set of constructs (illustrated by the light green boxes in the diagram above) that work together in a certain way and get the data extraction work done. All the constructs are pluggable through the job configuration and extensible by adding new or extending existing implementations. The constructs will be discussed in [Gobblin Constructs](Gobblin-Architecture#gobblin-constructs).
 
 A Gobblin job consists of a set of tasks, each of which corresponds to a unit of work to be done and is responsible for extracting a portion of the data. The tasks of a Gobblin job are executed by the Gobblin runtime (illustrated by the orange boxes in the diagram above) on the deployment setting of choice (illustrated by the red boxes in the diagram above). 
 
