@@ -1,3 +1,8 @@
+Table of Contents
+-----------------
+
+[TOC]
+
 ## Checking Job State
 When there's an issue with a Gobblin job to troubleshoot, it is often helpful to check the state of the job persisted in the state store. Gobblin provides a tool `gobblin-dist/bin/statestore-checker.sh' for checking job states. The tool print job state(s) as a Json document that are easily readable. The usage of the tool is as follows:
 

@@ -1,18 +1,6 @@
 # Table of Contents
 
-- [Introduction](#introduction)
-- [Options](#options)
-    - [Versions](#versions)
-      - [Hadoop Version](#hadoop-version)
-      - [Hive Version](#hive-version)
-      - [Pegasus Version](#pegasus-version)
-      - [Byteman Version](#byteman-version)
-    - [Exclude Hadoop Dependencies from `gobblin-dist.tar.gz`](#exclude-hadoop-dependencies-from-gobblin-disttargz)
-    - [Exclude Hive Dependencies from `gobblin-dist.tar.gz`](#exclude-hive-dependencies-from-gobblin-disttargz)
-- [Custom Gradle Tasks](#custom-gradle-tasks)
-    - [Print Project Dependencies](#print-project-dependencies)
-- [Useful Gradle Commands](#useful-gradle-commands)
-    - [Skipping Tests](#skipping-tests)
+[TOC]
 
 # Introduction
 

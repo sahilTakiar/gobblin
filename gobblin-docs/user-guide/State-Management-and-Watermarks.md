@@ -1,20 +1,15 @@
 Table of Contents
 --------------------
-* [1 Managing Watermarks in a Job](https://github.com/linkedin/gobblin/wiki/State-Management-and-Watermarks#1-managing-watermarks-in-a-job)
- * [1.1 Basics](https://github.com/linkedin/gobblin/wiki/State-Management-and-Watermarks#11-basics)
- * [1.2 Task Failures](https://github.com/linkedin/gobblin/wiki/State-Management-and-Watermarks#12-task-failures)
- * [1.3 Multi-Dataset Jobs](https://github.com/linkedin/gobblin/wiki/State-Management-and-Watermarks#13-multi-dataset-jobs)
-* [2 Gobblin State Deep Dive](https://github.com/linkedin/gobblin/wiki/State-Management-and-Watermarks#2-gobblin-state-deep-dive)
- * [2.1 `State` class hierarchy](https://github.com/linkedin/gobblin/wiki/State-Management-and-Watermarks#21-state-class-hierarchy)
- * [2.2 How States are Used in a Gobblin Job](https://github.com/linkedin/gobblin/wiki/State-Management-and-Watermarks#22-how-states-are-used-in-a-gobblin-job)
+
+[TOC]
 
 This page has two parts. Section 1 is an instruction on how to carry over checkpoints between two runs of a scheduled batch ingestion job, so that each run can start at where the previous run left off. Section 2 is a deep dive of different types of states in Gobblin and how they are used in a typical job run.
 
-## 1 Managing Watermarks in a Job
+## Managing Watermarks in a Job
 
 When scheduling a Gobblin job to run in batches and pull data incrementally, each run, upon finishing its tasks, should check in the state of its work into the state store, so that the next run can continue the work based on the previous run. This is done through a concept called Watermark.
 
-### 1.1 Basics
+### Basics
 
 **low watermark and expected high watermark**
 
@@ -30,11 +25,11 @@ In the next run, the `Source` will call `SourceState.getPreviousWorkUnitStates()
 
 A watermark can be of any custom type by implementing the [`Watermark`](https://github.com/linkedin/gobblin/blob/master/gobblin-api/src/main/java/gobblin/source/extractor/Watermark.java) interface. For example, for Kafka-HDFS ingestion, if each `WorkUnit` is responsible for pulling a single Kafka topic partition, a watermark is a single `long` value representing a Kafka offset. If each `WorkUnit` is responsible for pulling multiple Kafka topic partitions, a watermark can be a list of `long` values, such as [`MultiLongWatermark`](https://github.com/linkedin/gobblin/blob/master/gobblin-core/src/main/java/gobblin/source/extractor/extract/kafka/MultiLongWatermark.java).
 
-### 1.2 Task Failures
+### Task Failures
 
 A task may pull some data and then fail. If a task fails and job commit policy specified by configuration property `job.commit.policy` is set to `full`, the data it pulled won't be published. In this case, it doesn't matter what value `Extractor.nextWatermark` is, the actual high watermark will be automatically rolled back to the low watermark by Gobblin internally. On the other hand, if the commit policy is set to `partial`, the failed task may get committed and the data may get published. In this case the `Extractor` is responsible for setting the correct actual high watermark in `Extractor.close()`. Therefore, it is recommended that the `Extractor` update `nextWatermark` every time it pulls a record, so that `nextWatermark` is always up to date (unless you are OK with the next run re-doing the work which may cause some data to be published twice).
 
-### 1.3 Multi-Dataset Jobs
+### Multi-Dataset Jobs
 
 Currently the only state store implementation Gobblin provides is [`FsStateStore`](https://github.com/linkedin/gobblin/blob/master/gobblin-metastore/src/main/java/gobblin/metastore/FsStateStore.java) which uses Hadoop SequenceFiles to store the states. By default, each job run reads the SequenceFile created by the previous run, and generates a new SequenceFile. This creates a pitfall when a job pulls data from multiple datasets: if a data set is skipped in a job run for whatever reason (e.g., it is blacklisted), its watermark will be unavailable for the next run.
 
@@ -50,11 +45,11 @@ If different `WorkUnit`s have different values of `dataset.urn`, the job will cr
 
 Note that when using Dataset URNs, **each `WorkUnit` can only have one `dataset.urn`**, which means, for example, in the Kafka ingestion case, each `WorkUnit` can only process one partition. This is usually not a big problem except that it may output too many small files (as explained in [Kafka HDFS ingestion](https://github.com/linkedin/gobblin/wiki/Kafka-HDFS-Ingestion), by having a `WorkUnit` pull multiple partitions of the same topic, these partitions can share output files). On the other hand, different `WorkUnit`s may have the same `dataset.urn`.
 
-## 2 Gobblin State Deep Dive
+## Gobblin State Deep Dive
 
 Gobblin involves several types of states during a job run, such as `JobState`, `TaskState`, `WorkUnit`, etc. They all extend the [`State`](https://github.com/linkedin/gobblin/blob/master/gobblin-api/src/main/java/gobblin/configuration/State.java) class, which is a wrapper around [`Properties`](https://docs.oracle.com/javase/8/docs/api/java/util/Properties.html) and provides some useful utility functions. 
 
-### 2.1 `State` class hierarchy
+### `State` class hierarchy
 
 <p align="left">
   <figure>    
@@ -76,7 +71,7 @@ The `MultiWorkUnit` is useful for finer-grained control and load balancing. With
 
 * **`Extract`**: `Extract` is mainly used for ingesting from databases. It contains properties such as job type (snapshot-only, append-only, snapshot-append), primary keys, delta fields, etc.
 
-### 2.2 How States are Used in a Gobblin Job
+### How States are Used in a Gobblin Job
 
 * When a job run starts, the job launcher first creates a `JobState`, which contains (1) all properties specified in the job config file, and (2) the `JobState` / `DatasetState` of the previous run, which contains, among other properties, the actual high watermark the previous run checked in for each of its tasks / datasets.
 

@@ -135,7 +135,7 @@ This class is used to schedule Gobblin jobs on Quartz. The job can be launched v
 * `state.store.dir`  
 
 They should not be set in individual job files, as they are system-level parameters.
-For more information on how to set the configuration parameters for jobs launched through the SchedulerDaemon, check out the [Deployment](https://github.com/linkedin/gobblin/wiki/Gobblin%20Deployment) page.
+For more information on how to set the configuration parameters for jobs launched through the SchedulerDaemon, check out the [Deployment](Gobblin-Deployment) page.
 #### job.schedule 
 ###### Description
 Cron-Based job schedule. This schedule only applies to jobs that run using Quartz.

@@ -1,24 +1,7 @@
 Table of Contents
 ---------------------------------------
-- [Gobblin](#gobblin)
-  - [General Questions <a name="General-Questions"></a>](#general-questions-a-namegeneral-questionsa)
-        - [What is Gobblin?](#what-is-gobblin)
-        - [What programming languages does Gobblin support?](#what-programming-languages-does-gobblin-support)
-        - [Does Gobblin require any external software to be installed?](#does-gobblin-require-any-external-software-to-be-installed)
-        - [What Hadoop version can Gobblin run on?](#what-hadoop-version-can-gobblin-run-on)
-        - [How do I run and schedule a Gobblin job?](#how-do-i-run-and-schedule-a-gobblin-job)
-        - [How is Gobblin different from Sqoop?](#how-is-gobblin-different-from-sqoop)
-  - [Technical Questions <a name="Technical-Questions"></a>](#technical-questions-a-nametechnical-questionsa)
-        - [When running on Hadoop, each map task quickly reaches 100 Percent completion, but then stalls for a long time. Why does this happen?](#when-running-on-hadoop-each-map-task-quickly-reaches-100-percent-completion-but-then-stalls-for-a-long-time-why-does-this-happen)
-        - [Why does Gobblin on Hadoop stall for a long time between adding files to the DistrbutedCache, and launching the actual job?](#why-does-gobblin-on-hadoop-stall-for-a-long-time-between-adding-files-to-the-distrbutedcache-and-launching-the-actual-job)
-        - [How do I fix `UnsupportedFileSystemException: No AbstractFileSystem for scheme: null`?](#how-do-i-fix-unsupportedfilesystemexception-no-abstractfilesystem-for-scheme-null)
-        - [How do I compile Gobblin against CDH?](#how-do-i-compile-gobblin-against-cdh)
-        - [Resolve Gobblin-on-MR Exception `IOException: Not all tasks running in mapper attempt_id completed successfully`](#resolve-gobblin-on-mr-exception-ioexception-not-all-tasks-running-in-mapper-attempt_id-completed-successfully)
-        - [Gradle Build Fails With `Cannot invoke method getURLs on null object`](#gradle-build-fails-with-cannot-invoke-method-geturls-on-null-object)
-- [Gradle](#gradle)
-  - [Technical Questions](#technical-questions)
-      - [How do I add a new external dependency?](#how-do-i-add-a-new-external-dependency)
-      - [How do I add a new Maven Repository to pull artifacts from?](#how-do-i-add-a-new-maven-repository-to-pull-artifacts-from)
+
+[TOC]
 
 # Gobblin
 
@@ -26,7 +9,7 @@ Table of Contents
 
 ##### What is Gobblin?
 
-Gobblin is a universal ingestion framework. It's goal is to pull data from any source into an arbitrary data store. One major use case for Gobblin is pulling data into Hadoop. Gobblin can pull data from file systems, SQL stores, and data that is exposed by a REST API. See the Gobblin [Home](https://github.com/linkedin/gobblin/wiki) page for more information.
+Gobblin is a universal ingestion framework. It's goal is to pull data from any source into an arbitrary data store. One major use case for Gobblin is pulling data into Hadoop. Gobblin can pull data from file systems, SQL stores, and data that is exposed by a REST API. See the Gobblin [Home](../index) page for more information.
 
 ##### What programming languages does Gobblin support?
 
@@ -62,7 +45,7 @@ Gobblin takes all WorkUnits created by the Source class and serializes each one 
 
 This error typically occurs due to Hadoop version conflict issues. If Gobblin is compiled against a specific Hadoop version, but then deployed on a different Hadoop version or installation, this error may be thrown. For example, if you simply compile Gobblin using `./gradlew clean build -PuseHadoop2`, but deploy Gobblin to a cluster with [CDH](https://www.cloudera.com/content/www/en-us/products/apache-hadoop/key-cdh-components.html) installed, you may hit this error.
 
-It is important to realize that the the `gobblin-dist.tar.gz` file produced by `./gradlew clean build` will include all the Hadoop jar dependencies; and if one follows the [MR deployment guide](https://github.com/linkedin/gobblin/wiki/Gobblin%20Deployment#Hadoop-MapReduce-Deployment), Gobblin will be launched with these dependencies on the classpath.
+It is important to realize that the the `gobblin-dist.tar.gz` file produced by `./gradlew clean build` will include all the Hadoop jar dependencies; and if one follows the [MR deployment guide](Gobblin-Deployment#Hadoop-MapReduce-Deployment), Gobblin will be launched with these dependencies on the classpath.
 
 To fix this take the following steps:
 

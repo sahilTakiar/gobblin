@@ -1,12 +1,7 @@
 Table of Contents
 --------------------
-* [Overview] (#overview)
-* [Information Recorded] (#information-recorded)
- * [Job Execution Information] (#job-execution-information)
- * [Task Execution Information] (#task-execution-information)
-* [Default Implementation] (#default-implementation)
-* [Rest Query API] (#rest-query-api)
-* [Job Execution History Server] (#job-execution-history-server)
+
+[TOC]
 
 Overview
 --------------------

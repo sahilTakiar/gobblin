@@ -1,9 +1,7 @@
 Table of Contents
 -----------------------------------------------
-- [Introduction](#introduction)
-- [IntelliJ Integration](#intellij-integration)
-- [Eclipse Integration](#eclipse-integration)
-- [Lombok](#lombok)
+
+[TOC]
 
 # Introduction
 This document is for users who want to import the Gobblin code base into an [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) and directly modify that Gobblin code base. This is not for users who want to just setup Gobblin as a Maven dependency.
