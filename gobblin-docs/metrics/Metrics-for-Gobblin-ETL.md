@@ -19,7 +19,7 @@ The following configurations are used for metrics and event emission:
 |metrics.reporting.kafka.avro.use.schema.registry | Whether to use a schema registry for Kafka emitting. | false |
 |kafka.schema.registry.url        | If using schema registry, the url of the schema registry. | N/A   |
 |metrics.reporting.jmx.enabled    | Whether to report metrics to JMX.      | false  |
-|metrics.reporting.custom.builders | Comma-separated list of classes for custom metrics reporters. (See [Custom Reporters](https://github.com/linkedin/gobblin/wiki/Metrics-for-Gobblin-ETL#custom-reporters)) |    |
+|metrics.reporting.custom.builders | Comma-separated list of classes for custom metrics reporters. (See [Custom Reporters](Metrics-for-Gobblin-ETL#custom-reporters)) |    |
 
  
 Operational Metrics

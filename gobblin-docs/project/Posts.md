@@ -1,1 +1,1 @@
-* [Gobblin Metrics: next generation instrumentation for applications](https://github.com/linkedin/gobblin/wiki/Gobblin-Metrics:-next-generation-instrumentation-for-applications)
+* [Gobblin Metrics: next generation instrumentation for applications](../metrics/Gobblin-Metrics-next-generation-instrumentation-for-applications)

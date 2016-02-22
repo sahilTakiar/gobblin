@@ -43,7 +43,7 @@ The are two solutions to the above problem (three if you count the one that impl
 
 If different `WorkUnit`s have different values of `dataset.urn`, the job will create one state store SequenceFile for each `dataset.urn`. In the next run, instead of calling `SourceState.getPreviousWorkUnitStates()`, one should use `SourceState.getPreviousWorkUnitStatesByDatasetUrns()`. In this way, each run will look for the most recent state store SequenceFile for each dataset, and therefore, even if a dataset is not processed by a job run, its watermark won't be lost.
 
-Note that when using Dataset URNs, **each `WorkUnit` can only have one `dataset.urn`**, which means, for example, in the Kafka ingestion case, each `WorkUnit` can only process one partition. This is usually not a big problem except that it may output too many small files (as explained in [Kafka HDFS ingestion](https://github.com/linkedin/gobblin/wiki/Kafka-HDFS-Ingestion), by having a `WorkUnit` pull multiple partitions of the same topic, these partitions can share output files). On the other hand, different `WorkUnit`s may have the same `dataset.urn`.
+Note that when using Dataset URNs, **each `WorkUnit` can only have one `dataset.urn`**, which means, for example, in the Kafka ingestion case, each `WorkUnit` can only process one partition. This is usually not a big problem except that it may output too many small files (as explained in [Kafka HDFS ingestion](../case-studies/Kafka-HDFS-Ingestion), by having a `WorkUnit` pull multiple partitions of the same topic, these partitions can share output files). On the other hand, different `WorkUnit`s may have the same `dataset.urn`.
 
 ## Gobblin State Deep Dive
 
