@@ -1,3 +1,8 @@
+Table of Contents
+-----------------
+
+[TOC]
+
 Metric Reporters
 ================
 

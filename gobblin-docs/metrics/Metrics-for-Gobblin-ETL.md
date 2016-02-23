@@ -1,3 +1,8 @@
+Table of Contents
+-----------------
+
+[TOC]
+
 Gobblin ETL comes equipped with instrumentation using [Gobblin Metrics](Gobblin Metrics), as well as end points to easily extend this instrumentation.
 
 Configuring Metrics and Event emission
@@ -26,6 +31,7 @@ Operational Metrics
 ===================
 
 Each construct in a Gobblin ETL run computes metrics regarding it's performance / progress. Each metric is tagged by default with the following tags:
+
 * jobName: Gobblin generated name for the job.
 * jobId: Gobblin generated id for the job.
 * clusterIdentifier: string identifier the cluster / host where the job was run. Obtained from resource manager, job tracker, or the name of the host.
@@ -73,6 +79,7 @@ Runtime Events
 ==============
 
 The Gobblin ETL runtime emits events marking its progress. All events have the following metadata:
+
 * jobName: Gobblin generated name for the job.
 * jobId: Gobblin generated id for the job.
 * clusterIdentifier: string identifier the cluster / host where the job was run. Obtained from resource manager, job tracker, or the name of the host.
@@ -94,12 +101,14 @@ Job Progression Events
 Job Timing Events
 -----------------
 These events give information on timing on certain parts of the execution. Each timing event contains the following metadata:
+
 * startTime: timestamp when the timed processing started.
 * endTime: timestamp when the timed processing finished.
 * durationMillis: duration in milliseconds of the timed processing.
 * eventType: always "timingEvent" for timing events.
 
 The following timing events are emitted:
+
 * FullJobExecutionTimer: times the entire job execution.
 * WorkUnitsCreationTimer: times the creation of work units.
 * WorkUnitsPreparationTime: times the preparation of work units.

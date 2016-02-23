@@ -1,3 +1,8 @@
+Table of Contents
+-----------------
+
+[TOC]
+
 <p>
 Long running, complex applications are prone to operational issues. Good instrumentation, monitoring, and accessible historical information on its execution helps diagnose them, and many times even prevent them. For Gobblin ingestion, we wanted to add this instrumentation to all parts of the application. Some of the requirements we had were:
 <ul>

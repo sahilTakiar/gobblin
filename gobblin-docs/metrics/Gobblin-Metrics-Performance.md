@@ -1,3 +1,8 @@
+Table of Contents
+-----------------
+
+[TOC]
+
 Generalities
 ============
 These are the main resources used by Gobblin Metrics:

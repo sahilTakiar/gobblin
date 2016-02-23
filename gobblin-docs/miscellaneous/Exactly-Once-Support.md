@@ -1,3 +1,8 @@
+Table of Contents
+-----------------
+
+[TOC]
+
 This page outlines the design for exactly-once support in Gobblin. 
 
 Currently the flow of publishing data in Gobblin is:

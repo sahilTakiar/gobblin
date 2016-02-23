@@ -1,3 +1,8 @@
+Table of Contents
+-----------------
+
+[TOC]
+
 ![Gobblin Metrics Architecture Diagram](https://raw.githubusercontent.com/wiki/linkedin/gobblin/images/Gobblin-Metrics-Architecture.png)
 
 Metric Context

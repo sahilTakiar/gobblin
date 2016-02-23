@@ -1,10 +1,9 @@
 _Current team members:_
+
 * [Abhishek Tiwari](https://www.linkedin.com/in/abhishektiwari23/en)
 * [Chavdar Botev](https://www.linkedin.com/in/chavdarbotev/en)
-* [Henry Cai](https://www.linkedin.com/pub/henry-haiying-cai/0/246/792/en)
 * [Issac Buenrostro](https://www.linkedin.com/in/ibuenros)
 * [Kapil Surlaker](https://www.linkedin.com/in/kapilsurlaker/en)
-* [Lin Qiao](https://www.linkedin.com/pub/lin-qiao/4/48b/222/en)
 * [Min Tu](https://www.linkedin.com/pub/min-tu/15/643/787/en)
 * [Narasimha Reddy](https://www.linkedin.com/in/narasimhareddyv/en)
 * [Pradhan Cadabam](https://www.linkedin.com/in/pradhancadabam)

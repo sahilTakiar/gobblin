@@ -1,3 +1,8 @@
+Table of Contents
+-----------------
+
+[TOC]
+
 The two best entry points for implementing custom reporters are [RecursiveScheduledMetricReporter](https://github.com/linkedin/gobblin/blob/master/gobblin-metrics/src/main/java/gobblin/metrics/reporter/RecursiveScheduledMetricReporter.java) and [EventReporter](https://github.com/linkedin/gobblin/blob/master/gobblin-metrics/src/main/java/gobblin/metrics/reporter/EventReporter.java). Each of these classes automatically schedules reporting, extracts the correct metrics, and calls a single method that must be implemented by the developer. These methods also implement builder patterns that can be extended by the developer.
 
 In the interest of giving more control to the users, metric and event reporters are kept separate, allowing users to more easily specify separate sinks for events and metrics. However, it is possible to implement a single report that handles both events and metrics.

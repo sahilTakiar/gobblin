@@ -1,3 +1,8 @@
+Table of Contents
+-----------------
+
+[TOC]
+
 This page is a guide for [Camus](https://github.com/linkedin/camus) → Gobblin migration, intended for users and organizations currently using Camus. Camus is LinkedIn's previous-generation Kafka-HDFS pipeline.
 
 It is recommended that one read [Kafka-HDFS Ingestion](../case-studies/Kafka-HDFS-Ingestion) before reading this page. This page focuses on the Kafka-related configuration properties in Gobblin vs Camus.

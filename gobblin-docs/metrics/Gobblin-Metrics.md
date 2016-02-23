@@ -1,3 +1,8 @@
+Table of Contents
+-----------------
+
+[TOC]
+
 Gobblin Metrics is a metrics library for emitting metrics and events instrumenting java applications. 
 Metrics and events are easy to use and enriched with tags. Metrics allow full granularity, auto-aggregation, and configurable 
 reporting schedules. Gobblin Metrics is based on [Dropwizard Metrics](http://metrics.dropwizard.io/), enhanced to better support 
