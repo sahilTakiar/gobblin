@@ -9,6 +9,8 @@ docs_dir: gobblin-docs
 
 theme: readthedocs
 
+extra_css: [css/extra.css]
+
 pages:
     - Home: index.md
     - Getting Started: Getting-Started.md
