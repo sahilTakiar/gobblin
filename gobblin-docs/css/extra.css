@@ -1,17 +1,5 @@
 /* Work around until the TOC becomes collapsable */
 
-li.toctree-l3 {
-  display: none;
-}
-
-li.toctree-l4 {
-  display: none;
-}
-
-a.toctree-l3 {
-  display: none;
-}
-
 a.toctree-l4 {
   display: none;
 }
