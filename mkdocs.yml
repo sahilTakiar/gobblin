@@ -59,3 +59,5 @@ pages:
 markdown_extensions:
   - toc:
       permalink: True
+
+google_analytics: ['UA-74333035-1', 'gobblin.readthedocs.org']
