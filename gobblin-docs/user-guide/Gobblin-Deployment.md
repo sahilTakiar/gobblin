@@ -13,7 +13,7 @@ Standalone Architecture <a name="Standalone-Architecture"></a>
 --------------------
 The following diagram illustrates the Gobblin standalone architecture. In the standalone mode, a Gobblin instance runs in a single JVM and tasks run in a thread pool, the size of which is configurable. The standalone mode is good for light-weight data sources such as small databases. The standalone mode is also the default mode for trying and testing Gobblin. 
 
-<p align="center"><img src=https://github.com/linkedin/gobblin/wiki/images/Gobblin-on-Single-Node.png alt="Gobblin Image" width="700"></p>
+<p align="center"><img src=../../img/Gobblin-on-Single-Node.png alt="Gobblin on Single Node" width="700"></p>
 
 In the standalone deployment, the `JobScheduler` runs as a daemon process that schedules and runs jobs using the so-called `JobLauncher`s. The `JobScheduler` maintains a thread pool in which a new `JobLauncher` is started for each job run. Gobblin ships with two types of `JobLauncher`s, namely, the `LocalJobLauncher` and `MRJobLauncher` for launching and running Gobblin jobs on a single machine and on Hadoop MapReduce, respectively. Which `JobLauncher` to use can be configured on a per-job basis, which means the `JobScheduler` can schedule and run jobs in different deployment modes. This section will focus on the `LocalJobLauncher` for launching and running Gobblin jobs on a single machine. The `MRJobLauncher` will be covered in a later section on the architecture of Gobblin on Hadoop MapReduce.  
 
@@ -95,7 +95,7 @@ Hadoop MapReduce Architecture <a name="Hadoop-MapReduce-Architecture"></a>
 --------------------
 The digram below shows the architecture of Gobblin on Hadoop MapReduce. As the diagram shows, a Gobblin job runs as a mapper-only MapReduce job that runs tasks of the Gobblin job in the mappers. The basic idea here is to use the mappers purely as _containers_ to run Gobblin tasks. This design also makes it easier to integrate with Yarn. Unlike in the standalone mode, task retries are not handled by Gobblin itself in the Hadoop MapReduce mode. Instead, Gobblin relies on the task retry mechanism of Hadoop MapReduce.  
 
-<p align="center"><img src=https://github.com/linkedin/gobblin/wiki/images/Gobblin-on-Hadoop-MR.png alt="Gobblin Image" width="700"></p>
+<p align="center"><img src=../../img/Gobblin-on-Hadoop-MR.png alt="Gobblin on Hadoop MR" width="700"></p>
 
 In this mode, a `MRJobLauncher` is used to launch and run a Gobblin job on Hadoop MapReduce, following the steps below:
 

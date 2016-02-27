@@ -23,7 +23,7 @@ Existing Partitioners
 
 Design
 ------
-![Partitioned Writer Logic](https://raw.githubusercontent.com/wiki/linkedin/gobblin/images/Gobblin-Partitioned-Writer.png)
+![Partitioned Writer Logic](../../img/Gobblin-Partitioned-Writer.png)
 
 Gobblin always instantiates a `PartitionedDataWriter` for each fork. On construction, the partitioned writer:
  1. checks whether a partitioner is present in the configuration. If no partitioner is present, then the instance of `PartitionedDataWriter` is simply a thin wrapper around a normal writer. 

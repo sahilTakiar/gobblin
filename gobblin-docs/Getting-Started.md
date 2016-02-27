@@ -1,4 +1,11 @@
-This page will guide you to set up Gobblin, and run a quick and simple first job. Currently, Gobblin requires JDK 7 and later to compile and run.
+Table of Contents
+-----------------
+
+[TOC]
+
+# Introduction
+
+This guide will help you setup Gobblin, and run your first job. Currently, Gobblin requires JDK 7 or later to compile and run.
 
 # Download and Build
 

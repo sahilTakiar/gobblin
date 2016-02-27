@@ -1,4 +1,6 @@
-<p align="center"><img src=https://github.com/linkedin/gobblin/wiki/images/Gobblin-black.png alt="Gobblin Image" height="200"></p>
+<p align="center">
+  <img src=img/Gobblin-Logo.png alt="Gobblin Logo" height="200" width="400">
+</p>
 
 Over the years, LinkedIn's data infrastructure team built custom solutions for ingesting diverse data entities into our Hadoop eco-system. At one point, we were running 15 types of ingestion pipelines which created significant data quality, metadata management, development, and operation challenges.
 

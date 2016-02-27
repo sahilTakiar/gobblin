@@ -10,8 +10,8 @@ The [`ForkOperator`](https://github.com/linkedin/gobblin/blob/master/gobblin-api
 
 <p align="center">
   <figure>
-    <img src=https://github.com/linkedin/gobblin/wiki/images/Gobblin-Task-Flow.png alt="Gobblin Image" width="500">
-    <figcaption><br>Gobblin task flow.<br></figcaption>
+    <img src=../../img/Gobblin-Task-Flow.png alt="Gobblin Task Flow" width="500">
+    <figcaption><br>Gobblin Task Flow<br></figcaption>
   </figure>
 </p>
 

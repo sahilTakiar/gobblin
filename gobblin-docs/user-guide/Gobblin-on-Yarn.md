@@ -25,7 +25,7 @@ The architecture of Gobblin on Yarn is illustrated in the following diagram. In 
 
 <p align="center">
   <figure>
-    <img src=https://github.com/linkedin/gobblin/wiki/images/Gobblin-on-Yarn-with-Helix.png alt="Gobblin Image" width="800">
+    <img src=../../img/Gobblin-on-Yarn-with-Helix.png alt="Gobblin on Yarn with Helix" width="800">
   </figure>
 </p>
 
@@ -159,14 +159,14 @@ In additional to the common Gobblin configuration properties, documented in [`Co
 |`gobblin.yarn.app.master.jars`||A comma-separated list of jars the Gobblin ApplicationMaster depends on but not in the `lib` directory.|
 |`gobblin.yarn.app.master.files.local`||A comma-separated list of files on the local filesystem the Gobblin ApplicationMaster depends on.|
 |`gobblin.yarn.app.master.files.remote`||A comma-separated list of files on a remote filesystem (typically HDFS) the Gobblin ApplicationMaster depends on.|
-|`gobblin.yarn.app.master.jvm.args`||Additional JVM arguments for the JVM process running the Gobblin ApplicationMaster, e.g., `-XX:ReservedCodeCacheSize=100M -XX:MaxMetaspaceSize=256m -XX:CompressedClassSpaceSize=256m -Dconfig.trace=loads`.|
+|`gobblin.yarn.app.master.jvm.args`||Additional JVM arguments for the JVM process running the Gobblin ApplicationMaster, e.g., `-XX:ReservedCodeCacheSize=100M -XX:MaxMetaspaceSize=256m` `-XX:CompressedClassSpaceSize=256m -Dconfig.trace=loads`.|
 |`gobblin.yarn.initial.containers`|1|The number of containers to request initially when the application starts to run the WorkUnitRunner.|
 |`gobblin.yarn.container.memory.mbs`|512|How much memory in MBs to request for the container running the Gobblin WorkUnitRunner.|
 |`gobblin.yarn.container.cores`|1|The number of vcores to request for the container running the Gobblin WorkUnitRunner.|
 |`gobblin.yarn.container.jars`||A comma-separated list of jars the Gobblin WorkUnitRunner depends on but not in the `lib` directory.|
 |`gobblin.yarn.container.files.local`||A comma-separated list of files on the local filesystem the Gobblin WorkUnitRunner depends on.|
 |`gobblin.yarn.container.files.remote`||A comma-separated list of files on a remote filesystem (typically HDFS) the Gobblin WorkUnitRunner depends on.|
-|`gobblin.yarn.container.jvm.args`||Additional JVM arguments for the JVM process running the Gobblin WorkUnitRunner, e.g., `-XX:ReservedCodeCacheSize=100M -XX:MaxMetaspaceSize=256m -XX:CompressedClassSpaceSize=256m -Dconfig.trace=loads`.|
+|`gobblin.yarn.container.jvm.args`||Additional JVM arguments for the JVM process running the Gobblin WorkUnitRunner, e.g., `-XX:ReservedCodeCacheSize=100M -XX:MaxMetaspaceSize=256m` `-XX:CompressedClassSpaceSize=256m -Dconfig.trace=loads`.|
 |`gobblin.yarn.container.affinity.enabled`|`true`|Whether the same host should be used as the preferred host when requesting a replacement container for the one that exits.|
 |`gobblin.yarn.helix.cluster.name`|`GobblinYarn`|The name of the Helix cluster that will be registered with ZooKeeper.|
 |`gobblin.yarn.zk.connection.string`|`localhost:2181`|The ZooKeeper connection string used by Helix.|

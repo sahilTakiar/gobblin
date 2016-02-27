@@ -6,13 +6,13 @@ Table of Contents
 Gobblin Architecture Overview
 --------------------
 Gobblin is built around the idea of extensibility, i.e., it should be easy for users to add new adapters or extend existing adapters to work with new sources and start extracting data from the new sources in any deployment settings. The architecture of Gobblin reflects this idea, as shown in Fig. 1 below:
- 
+
 <p align="center">
   <figure>    
-    <img src=https://github.com/linkedin/gobblin/wiki/images/Gobblin-Architecture-Overview.png alt="Gobblin Image" width="600">
-    <figcaption><br>Fig. 1: Gobblin architecture overview.<br></figcaption>
+    <img src=../img/Gobblin-Architecture-Overview.png alt="Gobblin Architecture Overview" width="600">
+    <figcaption><br>Figure 1: Gobblin Architecture Overview<br></figcaption>
   </figure>
-</p> 
+</p>
 
 A Gobblin job is built on a set of constructs (illustrated by the light green boxes in the diagram above) that work together in a certain way and get the data extraction work done. All the constructs are pluggable through the job configuration and extensible by adding new or extending existing implementations. The constructs will be discussed in [Gobblin Constructs](Gobblin-Architecture#gobblin-constructs).
 
@@ -30,8 +30,8 @@ A Gobblin job is responsible for extracting data in a defined scope/range from a
 
 <p align="center">
   <figure>
-    <img src=https://github.com/linkedin/gobblin/wiki/images/Gobblin-Job-Flow.png alt="Gobblin Image" width="500">
-    <figcaption><br>Fig. 2: Gobblin job flow.<br></figcaption>
+    <img src=../img/Gobblin-Job-Flow.png alt="Gobblin Job Flow" width="500">
+    <figcaption><br>Figure 2: Gobblin Job Flow<br></figcaption>
   </figure>
 </p>
 
@@ -62,8 +62,8 @@ As described above, a Gobblin job creates and runs tasks, each of which is respo
   
 <p align="center">
   <figure>
-    <img src=https://github.com/linkedin/gobblin/wiki/images/Gobblin-Constructs.png alt="Gobblin Image" width="800">
-    <figcaption><br>Fig. 3: Gobblin constructs.<br></figcaption>
+    <img src=../img/Gobblin-Constructs.png alt="Gobblin Constructs" width="800">
+    <figcaption><br>Figure 3: Gobblin Constructs<br></figcaption>
   </figure>
 </p>
 
@@ -81,8 +81,8 @@ A `Converter` is responsible for converting both schema and data records and is 
 
 <p align="center">
   <figure>
-    <img src=https://github.com/linkedin/gobblin/wiki/images/Converters-Explained.png alt="Gobblin Image" width="400">
-    <figcaption><br>Fig. 4: How converter chaining works.<br></figcaption>
+    <img src=../img/Converters-Explained.png alt="Converters Explained" width="400">
+    <figcaption><br>Figure 4: How Converter Chaining Works<br></figcaption>
   </figure>
 </p>
 
@@ -108,8 +108,8 @@ Fig. 5 below zooms in further and shows the details on how different constructs 
 
 <p align="center">
   <figure>
-    <img src=https://github.com/linkedin/gobblin/wiki/images/Gobblin-Task-Flow.png alt="Gobblin Image" width="600">
-    <figcaption><br>Fig. 5: Gobblin task flow.<br></figcaption>
+    <img src=../img/Gobblin-Task-Flow.png alt="Gobblin Task Flow" width="600">
+    <figcaption><br>Figure 5: Gobblin Task Flow<br></figcaption>
   </figure>
 </p>
 

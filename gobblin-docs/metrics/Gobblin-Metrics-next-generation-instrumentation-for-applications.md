@@ -19,7 +19,7 @@ Among existing solutions, we found <a href="http://metrics.dropwizard.io/">Dropw
 Gobblin Metrics is a metrics library, which is based on Dropwizard Metrics but extends it considerably to provide all the amazing features that make monitoring and execution auditing easy. The library is designed for modular applications: the application is a set of module instances, organized hierarchically. Following this pattern, the metrics library uses Metric Contexts organized hierarchically to instrument instances of classes and modules (see figure below for an example of this hierarchy for Gobblin ingestion). Each metric context in the tree contains a set of tags describing the context where particular metrics are being collected. Children in this tree automatically inherit the tags of their parents, giving a rich description of each instrumented object in the application. Of course, Gobblin Metrics is not limited to this kind of applications; we have taken advantage of all the other features of the library in much flatter programs.
 </p>
 
-<img src="https://raw.githubusercontent.com/wiki/linkedin/gobblin/images/Gobblin-Metrics-Example.png" alt="Gobblin Metrics Example">
+<img src="../../img/Gobblin-Metrics-Example.png" alt="Gobblin Metrics Example">
 
 <p>
 Each metric context manages a set of metrics (like counters, timers, meters, and histograms), providing information for instance on the throughput for each reader and writer, serialization/deserialization times, etc. Metrics are automatically aggregated in the metric context tree: for example, while each writer is computing is throughput independently, we are also computing in real-time the throughput across each task (containing many writers) and each job (containing many tasks).

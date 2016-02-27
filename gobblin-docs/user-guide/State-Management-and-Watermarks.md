@@ -53,7 +53,7 @@ Gobblin involves several types of states during a job run, such as `JobState`, `
 
 <p align="left">
   <figure>    
-    <img src=https://github.com/linkedin/gobblin/wiki/images/Gobblin-State-Hierarchy.png alt="Gobblin State Hierarchy" width="400">
+    <img src=../../img/Gobblin-State-Hierarchy.png alt="Gobblin State Hierarchy" width="400">
   </figure>
 </p> 
 
