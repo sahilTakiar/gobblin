@@ -18,6 +18,7 @@ A Job configuration file typically includes the following properties, in additio
 Hierarchical Structure of Job Configuration Files
 --------------------
 It is often the case that a Gobblin instance runs many jobs and manages the job configuration files corresponding to those jobs. The jobs may belong to different job groups and are for different data sources. It is also highly likely that jobs for the same data source shares a lot of common properties. So it is very useful to support the following features:
+
 * Job configuration files can be grouped by the job groups they belong to and put into different subdirectories under the root job configuration file directory.
 * Common job properties shared among multiple jobs can be extracted out to a common properties file that will be applied into the job configurations of all these jobs. 
 

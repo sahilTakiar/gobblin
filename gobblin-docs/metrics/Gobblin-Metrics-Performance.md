@@ -6,6 +6,7 @@ Table of Contents
 Generalities
 ============
 These are the main resources used by Gobblin Metrics:
+
 * CPU time for updating metrics: scales with number of metrics and frequency of metric update
 * CPU time for metric emission and lifecycle management: scales with number of metrics and frequency of emission
 * Memory for storing metrics: scales with number of metrics and metric contexts

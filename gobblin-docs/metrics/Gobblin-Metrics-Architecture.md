@@ -15,6 +15,7 @@ Children contexts automatically inherit the tags of their parent context, and ca
 Metric Contexts are created using `MetricContext.Builder`, which allows adding tags and specifying the parent. This is the only time tags can be added to the context. When building, the tags of the parent and the new tags are merged to obtain the final tags for this context. When building a child context for Metric Context `context`, calling `context.childBuilder(String)` generates a Builder with the correct parent.
 
 Each metric context contains the following instance variables:
+
 * A `String` `name`. The name is not used by the core metrics engine, but can be accessed by users to identify the context.
 * A reference to the parent metric context, or null if it has no parent.
 * A list of children metric context references, stored as soft references.

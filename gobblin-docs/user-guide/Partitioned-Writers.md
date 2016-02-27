@@ -6,6 +6,7 @@ Table of Contents
 Gobblin allows partitioning output data using a writer partitioner. This allows, for example, to write timestamped records to a different file depending on the timestamp of the record.
 
 To partition output records, two things are needed:
+
 * Set `writer.builder.class` to a class that implements `PartitionAwareDataWriterBuilder`.
 * Set `writer.partitioner.class` to the class of the desired partitioner, which must be subclass of `WriterPartitioner`. The partitioner will get all Gobblin configuration options, so some partitioners may require additional configurations.
 
@@ -68,6 +69,7 @@ Implementing a Partition Aware Writer Builder
 ---------------------------------------------
 
 This is very similar to a regular `DataWriterBuilder`, with two differences:
+
 * You must implement the method `validatePartitionSchema(Schema)` that must return false unless the builder can handle that schema.
 * The field `partition` is available, which is a `GenericRecord` that contains the partition key for the built writer. For any two different keys, Gobblin may create a writer for each key, so it is important that writers for different keys do not collide (e.g. do not try to use the same path).
 

@@ -25,6 +25,7 @@ A use case of MapReduce Compactor is for Kafka records deduplication. We will us
 ## Example Use Case
 
 Suppose we ingest data from a Kafka broker, and we would like to publish the data by hour and by day, both of which are deduplicated:
+
 - Data in the Kafka broker is first ingested into an `hourly_staging` folder, e.g., `/data/kafka_topics/NewUserEvent/hourly_staging/2015/10/29/08...`
 - A compaction with deduplication runs hourly, consumes data in `hourly_staging` and publish data into `hourly`, e.g., `/data/kafka_topics/NewUserEvent/hourly/2015/10/29/08...`
 - A non-deduping compaction runs daily, consumes data in `hourly` and publish data into `daily`, e.g., `/data/kafka_topics/NewUserEvent/daily/2015/10/29...`
@@ -52,6 +53,7 @@ If your data format is not Avro, you can implement a different job runner class 
 ## Non-deduping Compaction via Map-only Jobs
 
 There are two types of Non-deduping compaction.
+
 - **Type 1**: deduplication is not needed, for example you simply want to consolidate files in 24 hourly folders into a single daily folder.
 - **Type 2**: deduplication is needed, i.e., the published data should not contain duplicates, but the input data are already deduplicated. The daily compaction in the above example use case is of this type.
 
@@ -63,13 +65,12 @@ The reason these two types of compaction need to be separated is because of late
 
 Late records are records that arrived at a folder after compaction on this folder has started. We explain how Gobblin handles late records using the following example.
 
-
-
 In this use case, both hourly compaction and daily compaction need a mechanism to handle late records. For hourly compaction, late records are records that arrived at an `hourly_staging` folder after the hourly compaction of that folder has started. It is similar for daily compaction.
 
 **Compaction with Deduplication**
 
 For a compaction with deduplication (i.e., hourly compaction in the above use case), there are two options to deal with late data:
+
 - **Option 1**: if there are late data, re-do the compaction. For example, you may run the hourly compaction multiple times per hour. The first run will do the normal compaction, and in each subsequent run, if it detects late data in a folder, it will re-do compaction for that folder.
 
 To do so, set `compaction.job.overwrite.output.dir=true` and `compaction.recompact.from.input.for.late.data=true`.
@@ -145,6 +146,7 @@ The provided log4j config file (`log4j.xml`) prints logs from Gobblin compaction
 ### Global Config Properties (example: compaction.properties)
 
 (1) Required:
+
 - _**compaction.config.dir**_
 
 This is the the compaction jobconfig directory. Each file in this directory should be a jobconfig file (described in the next section).

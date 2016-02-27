@@ -11,6 +11,7 @@ Gobblin jobs can be scheduled on a recurring basis using a few different tools. 
 Gobblin has a built in Quartz scheduler as part of the [`JobScheduler`](https://github.com/linkedin/gobblin/blob/master/gobblin-scheduler/src/main/java/gobblin/scheduler/JobScheduler.java) class. This class integrates with the Gobblin [`SchedulerDaemon`](https://github.com/linkedin/gobblin/blob/master/gobblin-scheduler/src/main/java/gobblin/scheduler/SchedulerDaemon.java), which can be run using the Gobblin [`bin/gobblin-standalone.sh](https://github.com/linkedin/gobblin/blob/master/bin/gobblin-standalone.sh) script.
 
 So in order to take advantage of the Quartz scheduler two steps need to be taken:
+
 * Use the `bin/gobblin-standalone.sh` script
 * Add the property `job.schedule` to the `.pull` file
     * The value for this property should be a [CRONTrigger](http://quartz-scheduler.org/api/2.2.0/org/quartz/CronTrigger.html)

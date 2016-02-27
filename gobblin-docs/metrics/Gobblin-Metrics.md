@@ -74,6 +74,7 @@ Metrics are used to monitor the progress of an application. Metrics are emitted 
 the current state of the application. The metrics supported by Gobblin Metrics are the same ones as those supported 
 by [Dropwizard Metrics Core](http://metrics.dropwizard.io/3.1.0/manual/core/), adapted for tagging and auto-aggregation. 
 The types supported are:
+
 * Counter: simple long counter.
 * Meter: counter with added computation of the rate at which the counter is changing.
 * Histogram: stores a histogram of a value, divides all of the values observed into buckets, and reports the count for each bucket.
@@ -93,6 +94,7 @@ Reporters
 Reporters periodically output the metrics and events to particular sinks following a configurable schedule. Events and Metrics reporters are kept separate to allow users more control in case they want to emit metrics and events to separate sinks (for example, different files). Reporters for a few sinks are implemented by default, but additional sinks can be implemented by extending the `RecursiveScheduledMetricReporter` and the `EventReporter`. Each of the included reporters has a simple builder.
 
 The metric reporter implementations included with Gobblin Metrics are:
+
 * OutputStreamReporter: Supports any output stream, including STDOUT and files.
 * KafkaReporter: Emits metrics to a Kafka topic as Json messages.
 * KafkaAvroReporter: Emits metrics to a Kafka topic as Avro messages.
@@ -101,6 +103,7 @@ The metric reporter implementations included with Gobblin Metrics are:
 * HadoopCounterReporter: Emits metrics as Hadoop counters.
 
 The event reporter implementations included with Gobblin metrics are:
+
 * OutputStreamEventReporter: Supports any output stream, including STDOUT and files.
 * KafkaEventReporter: Emits events to Kafka as Json messages.
 * KafkaEventAvroReporter: Emits events to Kafka as Avro messages.
