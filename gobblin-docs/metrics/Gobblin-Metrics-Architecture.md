@@ -3,7 +3,7 @@ Table of Contents
 
 [TOC]
 
-![Gobblin Metrics Architecture Diagram](../../img/Gobblin-Metrics-Architecture.png)
+![Gobblin Metrics Architecture Diagram](../img/Gobblin-Metrics-Architecture.png)
 
 Metric Context
 ==============

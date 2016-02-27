@@ -133,6 +133,7 @@ All of the instrumented constructs have Javadoc providing with additional inform
 ### Instrumentable Interface
 
 Instrumented constructs extend the interface [Instrumentable](https://github.com/linkedin/gobblin/blob/master/gobblin-core/src/main/java/gobblin/instrumented/Instrumentable.java). It contains the following methods:
+
 * `getMetricContext()`: get the default metric context generated for that instance of the construct, with all the appropriate tags. Use this metric context to create any additional metrics.
 * `isInstrumentationEnabled()`: returns true if instrumentation is enabled.
 * `switchMetricsContext(List<Tag<?>>)`: switches the default metric context returned by `getMetricContext()` to a metric context containing the supplied tags. All default metrics will be reported to the new metric context. This method is useful when the state of a construct changes during the execution, and the user desires to reflect that in the emitted tags (for example, Kafka extractor can handle multiple topics in the same extractor, and we want to reflect this in the metrics).
