@@ -27,6 +27,7 @@ Design
 ![Partitioned Writer Logic](../img/Gobblin-Partitioned-Writer.png)
 
 Gobblin always instantiates a `PartitionedDataWriter` for each fork. On construction, the partitioned writer:
+
  1. checks whether a partitioner is present in the configuration. If no partitioner is present, then the instance of `PartitionedDataWriter` is simply a thin wrapper around a normal writer. 
  2. If a partitioner is present, the partitioned writer will check if the class configured at `writer.builder.class` is an instance of `PartitionAwareDataWriterBuilder`, throwing an error in case this is not true.  
  3. The partitioned writer instantiate the partitioner, runs `partitionSchema()`, and then checks whether the partition aware writer builder accepts that schema using `validatePartitionSchema`. If this returns false, Gobblin will throw an error.
