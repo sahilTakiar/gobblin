@@ -38,6 +38,7 @@ Events
 ======
 
 Events are objects of type [GobblinTrackingEvent](https://github.com/linkedin/gobblin/blob/master/gobblin-metrics/src/main/avro/GobblinTrackingEvent.avsc), which is a type generated from an Avro schema. Events have:
+
 * A `namespace`.
 * A `name`.
 * A `timestamp`.
