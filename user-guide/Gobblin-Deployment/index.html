@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Abhishek Tiwari, Chavdar Botev, Issac Buenrostro, Min Tu, Narasimha Veeramreedy, Pradhan Cadabam, Sahil Takiar, Shirshanka Das, Yinan Li, Ying Dai, Ziyang Liu">
+  
+  <title>Deployment - Gobblin Documentation</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Deployment";
+    var mkdocs_page_input_path = "user-guide/Gobblin-Deployment.md";
+    var mkdocs_page_url = "/user-guide/Gobblin-Deployment/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74333035-1', 'gobblin.readthedocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Gobblin Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../Getting-Started/">Getting Started</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../Gobblin-Architecture/">Architecture</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>User Guide</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Working-with-Job-Configuration-Files/">Job Configuration Files</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Deployment</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#table-of-contents">Table of Contents</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#deployment-overview">Deployment Overview </a></li>
+                
+            
+                <li class="toctree-l3"><a href="#standalone-architecture">Standalone Architecture </a></li>
+                
+            
+                <li class="toctree-l3"><a href="#standalone-deployment">Standalone Deployment </a></li>
+                
+            
+                <li class="toctree-l3"><a href="#hadoop-mapreduce-architecture">Hadoop MapReduce Architecture </a></li>
+                
+            
+                <li class="toctree-l3"><a href="#hadoop-mapreduce-deployment">Hadoop MapReduce Deployment </a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Gobblin-on-Yarn/">Gobblin on Yarn</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Compaction/">Compaction</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../State-Management-and-Watermarks/">State Management and Watermarks</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Working-with-the-ForkOperator/">Fork Operator</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Configuration-Properties-Glossary/">Configuration Glossary</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Partitioned-Writers/">Partitioned Writers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Monitoring/">Monitoring</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Gobblin-Schedulers/">Schedulers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Job-Execution-History-Store/">Job Execution History Store</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Gobblin-Build-Options/">Gobblin Build Options</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Troubleshooting/">Troubleshooting</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../FAQs/">FAQs</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Case Studies</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../case-studies/Kafka-HDFS-Ingestion/">Kafka-HDFS Ingestion</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../case-studies/Publishing-Data-to-S3/">Publishing Data to S3</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Gobblin Metrics</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../metrics/Gobblin-Metrics/">Quick Start</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../metrics/Existing-Reporters/">Existing Reporters</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../metrics/Metrics-for-Gobblin-ETL/">Metrics for Gobblin ETL</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../metrics/Gobblin-Metrics-Architecture/">Gobblin Metrics Architecture</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../metrics/Implementing-New-Reporters/">Implementing New Reporters</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../metrics/Gobblin-Metrics-Performance/">Gobblin Metrics Performance</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Developer Guide</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../developer-guide/Customization-for-New-Source/">Customization for New Source</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../developer-guide/Customization-for-Converter-and-Operator/">Customization for Converter and Operator</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../developer-guide/CodingStyle/">Code Style Guide</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../developer-guide/IDE-setup/">IDE setup</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../developer-guide/Monitoring-Design/">Monitoring Design</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Project</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../project/Feature-List/">Feature List</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../project/Team/">Contributors and Team</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../project/Talks-and-Tech-Blogs/">Talks and Tech Blog Posts</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../project/News/">News and Roadmap</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../project/Posts/">Posts</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Miscellaneous</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../miscellaneous/Camus-to-Gobblin-Migration/">Camus to Gobblin Migration</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../miscellaneous/Exactly-Once-Support/">Exactly Once Support</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Gobblin Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>User Guide &raquo;</li>
+        
+      
+    
+    <li>Deployment</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<div class="toc">
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#deployment-overview">Deployment Overview <a name="Standalone-Overview"></a></a></li>
+<li><a href="#standalone-architecture">Standalone Architecture <a name="Standalone-Architecture"></a></a></li>
+<li><a href="#standalone-deployment">Standalone Deployment <a name="Standalone-Deployment"></a></a></li>
+<li><a href="#hadoop-mapreduce-architecture">Hadoop MapReduce Architecture <a name="Hadoop-MapReduce-Architecture"></a></a></li>
+<li><a href="#hadoop-mapreduce-deployment">Hadoop MapReduce Deployment <a name="Hadoop-MapReduce-Deployment"></a></a></li>
+</ul>
+</div>
+<h2 id="deployment-overview">Deployment Overview <a name="Standalone-Overview"></a><a class="headerlink" href="#deployment-overview" title="Permanent link">&para;</a></h2>
+<p>One important feature of Gobblin is that it can be run on different platforms. Currently, Gobblin can run in standalone mode (which runs on a single machine), and on Hadoop MapReduce mode (which runs on a Hadoop cluster, both Hadoop 1.x and Hadoop 2.x are supported). This page summarizes the different deployment modes of Gobblin. It is important to understand the architecture of Gobblin in a specific deployment mode, so this page also describes the architecture of each deployment mode.  </p>
+<p>Gobblin supports Java 6 and up, and can run on either Hadoop 1.x or Hadoop 2.x. By default, Gobblin will build against Hadoop 1.x, in order to build against Hadoop 2.x, run <code>./gradlew -PuseHadoop2 clean build</code>. More information on how to build Gobblin can be found <a href="https://github.com/linkedin/gobblin/blob/master/README.md">here</a>. All directories/paths referred below are relative to <code>gobblin-dist</code>.</p>
+<h2 id="standalone-architecture">Standalone Architecture <a name="Standalone-Architecture"></a><a class="headerlink" href="#standalone-architecture" title="Permanent link">&para;</a></h2>
+<p>The following diagram illustrates the Gobblin standalone architecture. In the standalone mode, a Gobblin instance runs in a single JVM and tasks run in a thread pool, the size of which is configurable. The standalone mode is good for light-weight data sources such as small databases. The standalone mode is also the default mode for trying and testing Gobblin. </p>
+<p align="center"><img src=../../img/Gobblin-on-Single-Node.png alt="Gobblin on Single Node" width="700"></p>
+
+<p>In the standalone deployment, the <code>JobScheduler</code> runs as a daemon process that schedules and runs jobs using the so-called <code>JobLauncher</code>s. The <code>JobScheduler</code> maintains a thread pool in which a new <code>JobLauncher</code> is started for each job run. Gobblin ships with two types of <code>JobLauncher</code>s, namely, the <code>LocalJobLauncher</code> and <code>MRJobLauncher</code> for launching and running Gobblin jobs on a single machine and on Hadoop MapReduce, respectively. Which <code>JobLauncher</code> to use can be configured on a per-job basis, which means the <code>JobScheduler</code> can schedule and run jobs in different deployment modes. This section will focus on the <code>LocalJobLauncher</code> for launching and running Gobblin jobs on a single machine. The <code>MRJobLauncher</code> will be covered in a later section on the architecture of Gobblin on Hadoop MapReduce.  </p>
+<p>Each <code>LocalJobLauncher</code> starts and manages a few components for executing tasks of a Gobblin job. Specifically, a <code>TaskExecutor</code> is responsible for executing tasks in a thread pool, whose size is configurable on a per-job basis. A <code>LocalTaskStateTracker</code> is responsible for keep tracking of the state of running tasks, and particularly updating the task metrics. The <code>LocalJobLauncher</code> follows the steps below to launch and run a Gobblin job:    </p>
+<ol>
+<li>Starting the <code>TaskExecutor</code> and <code>LocalTaskStateTracker</code>.</li>
+<li>Creating an instance of the <code>Source</code> class specified in the job configuration and getting the list of <code>WorkUnit</code>s to do.</li>
+<li>Creating a task for each <code>WorkUnit</code> in the list, registering the task with the <code>LocalTaskStateTracker</code>, and submitting the task to the <code>TaskExecutor</code> to run.</li>
+<li>Waiting for all the submitted tasks to finish.</li>
+<li>Upon completion of all the submitted tasks, collecting tasks states and persisting them to the state store, and publishing the extracted data.  </li>
+</ol>
+<h2 id="standalone-deployment">Standalone Deployment <a name="Standalone-Deployment"></a><a class="headerlink" href="#standalone-deployment" title="Permanent link">&para;</a></h2>
+<p>Gobblin ships with a script <code>bin/gobblin-standalone.sh</code> for starting and stopping the standalone Gobblin daemon on a single node. Below is the usage of this launch script:</p>
+<pre><code>gobblin-standalone.sh &lt;start | status | restart | stop&gt; [OPTION]
+Where:
+  --workdir &lt;job work dir&gt;                       Gobblin's base work directory: if not set, taken from ${GOBBLIN_WORK_DIR}
+  --jars &lt;comma-separated list of job jars&gt;      Job jar(s): if not set, lib is examined
+  --conf &lt;directory of job configuration files&gt;  Directory of job configuration files: if not set, taken from 
+  --help                                         Display this help and exit
+</code></pre>
+
+<p>In the standalone mode, the <code>JobScheduler</code>, upon startup, will pick up job configuration files from a user-defined directory and schedule the jobs to run. The job configuration file directory can be specified using the <code>--conf</code> command-line option of <code>bin/gobblin-standalone.sh</code> or through an environment variable named <code>GOBBLIN_JOB_CONFIG_DIR</code>. The <code>--conf</code> option takes precedence and will take the value of <code>GOBBLIN_JOB_CONFIG_DIR</code> if not set. Note that this job configuration directory is different from <code>conf</code>, which stores Gobblin system configuration files, in which deployment-specific configuration properties applicable to all jobs are stored. In comparison, job configuration files store job-specific configuration properties such as the <code>Source</code> and <code>Converter</code> classes used.</p>
+<p>The <code>JobScheduler</code> is backed by a <a href="http://quartz-scheduler.org/">Quartz</a> scheduler and it supports cron-based triggers using the configuration property <code>job.schedule</code> for defining the cron schedule. Please refer to this <a href="http://quartz-scheduler.org/documentation/quartz-2.2.x/tutorials/tutorial-lesson-06">tutorial</a> for more information on how to use and configure a cron-based trigger.  </p>
+<p>Gobblin needs a working directory at runtime, which can be specified using the command-line option <code>--workdir</code> of <code>bin/gobblin-standalone.sh</code> or an environment variable named <code>GOBBLIN_WORK_DIR</code>. The <code>--workdir</code> option takes precedence and will take the value of <code>GOBBLIN_WORK_DIR</code> if not set. Once started, Gobblin will create some subdirectories under the root working directory, as follows: </p>
+<pre><code>GOBBLIN_WORK_DIR\
+    task-staging\ # Staging area where data pulled by individual tasks lands
+    task-output\  # Output area where data pulled by individual tasks lands
+    job-output\   # Final output area of data pulled by jobs
+    state-store\  # Persisted job/task state store
+    metrics\      # Metrics store (in the form of metric log files), one subdirectory per job.
+</code></pre>
+
+<p>Before starting the Gobblin standalone daemon, make sure the environment variable <code>JAVA_HOME</code> is properly set to point to the home directory of the Java Runtime Environment (JRE) of choice. When starting the JVM process of the Gobblin standalone daemon, a default set of jars will be included on the <code>classpath</code>. Additional jars needed by your Gobblin jobs can be specified as a comma-separated list using the command-line option <code>--jars</code> of <code>bin/gobblin-standaline.sh</code>. If the <code>--jar</code> option is not set, only the jars under <code>lib</code> will be included.</p>
+<p>Below is a summary of the environment variables that may be set for standalone deployment.</p>
+<ul>
+<li><code>GOBBLIN_JOB_CONFIG_DIR</code>: this variable defines the directory where job configuration files are stored. </li>
+<li><code>GOBBLIN_WORK_DIR</code>: this variable defines the working directory for Gobblin to operate.</li>
+<li><code>JAVA_HOME</code>: this variable defines the path to the home directory of the Java Runtime Environment (JRE) used to run the daemon process.</li>
+</ul>
+<p>To start the Gobblin standalone daemon, run the following command:</p>
+<pre><code>bin/gobblin-standalone.sh start [OPTION]
+</code></pre>
+
+<p>After the Gobblin standalone daemon is started, the logs can be found under <code>logs</code>. Gobblin uses <a href="http://www.slf4j.org/">SLF4J</a> and the <a href="http://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12">slf4j-log4j12</a> binding for logging. The <a href="http://logging.apache.org/log4j/1.2/">log4j</a> configuration can be found at <code>conf/log4j-standalone.xml</code>.</p>
+<p>By default, the Gobblin standalone daemon uses the following JVM settings. Change the settings in <code>bin/gobblin-standalone.sh</code> if necessary for your deployment.</p>
+<pre><code>-Xmx2g -Xms1g
+-XX:+UseConcMarkSweepGC -XX:+UseParNewGC
+-XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintTenuringDistribution
+-XX:+UseCompressedOops
+-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=&lt;gobblin log dir&gt;
+</code></pre>
+
+<p>To restart the Gobblin standalone daemon, run the following command:</p>
+<pre><code>bin/gobblin-standalone.sh restart [OPTION]
+</code></pre>
+
+<p>To stop the running Gobblin standalone daemon, run the following command:</p>
+<pre><code>bin/gobblin-standalone.sh stop
+</code></pre>
+
+<p>If there are any additional jars that any jobs depend on, the jars can be added to the classpath using the <code>--jars</code> option.</p>
+<p>The script also supports checking the status of the running daemon process using the <code>bin/gobblin-standalone.sh status</code> command.</p>
+<h2 id="hadoop-mapreduce-architecture">Hadoop MapReduce Architecture <a name="Hadoop-MapReduce-Architecture"></a><a class="headerlink" href="#hadoop-mapreduce-architecture" title="Permanent link">&para;</a></h2>
+<p>The digram below shows the architecture of Gobblin on Hadoop MapReduce. As the diagram shows, a Gobblin job runs as a mapper-only MapReduce job that runs tasks of the Gobblin job in the mappers. The basic idea here is to use the mappers purely as <em>containers</em> to run Gobblin tasks. This design also makes it easier to integrate with Yarn. Unlike in the standalone mode, task retries are not handled by Gobblin itself in the Hadoop MapReduce mode. Instead, Gobblin relies on the task retry mechanism of Hadoop MapReduce.  </p>
+<p align="center"><img src=../../img/Gobblin-on-Hadoop-MR.png alt="Gobblin on Hadoop MR" width="700"></p>
+
+<p>In this mode, a <code>MRJobLauncher</code> is used to launch and run a Gobblin job on Hadoop MapReduce, following the steps below:</p>
+<ol>
+<li>Creating an instance of the <code>Source</code> class specified in the job configuration and getting the list of <code>WorkUnit</code>s to do.</li>
+<li>Serializing each <code>WorkUnit</code> into a file on HDFS that will be read later by a mapper.</li>
+<li>Creating a file that lists the paths of the files storing serialized <code>WorkUnit</code>s.</li>
+<li>Creating and configuring a mapper-only Hadoop MapReduce job that takes the file created in step 3 as input.</li>
+<li>Starting the MapReduce job to run on the cluster of choice and waiting for it to finish.</li>
+<li>Upon completion of the MapReduce job, collecting tasks states and persisting them to the state store, and publishing the extracted data. </li>
+</ol>
+<p>A mapper in a Gobblin MapReduce job runs one or more tasks, depending on the number of <code>WorkUnit</code>s to do and the (optional) maximum number of mappers specified in the job configuration. If there is no maximum number of mappers specified in the job configuration, each <code>WorkUnit</code> corresponds to one task that is executed by one mapper and each mapper only runs one task. Otherwise, if a maximum number of mappers is specified and there are more <code>WorkUnit</code>s than the maximum number of mappers allowed, each mapper may handle more than one <code>WorkUnit</code>. There is also a special type of <code>WorkUnit</code>s named <code>MultiWorkUnit</code> that group multiple <code>WorkUnit</code>s to be executed together in one batch in a single mapper.</p>
+<p>A mapper in a Gobblin MapReduce job follows the step below to run tasks assigned to it:</p>
+<ol>
+<li>Starting the <code>TaskExecutor</code> that is responsible for executing tasks in a configurable-size thread pool and the <code>MRTaskStateTracker</code> that is responsible for keep tracking of the state of running tasks in the mapper. </li>
+<li>Reading the next input record that is the path to the file storing a serialized <code>WorkUnit</code>.</li>
+<li>Deserializing the <code>WorkUnit</code> and adding it to the list of <code>WorkUnit</code>s to do. If the input is a <code>MultiWorkUnit</code>, the <code>WorkUnit</code>s it wraps are all added to the list. Steps 2 and 3 are repeated until all assigned <code>WorkUnit</code>s are deserialized and added to the list.</li>
+<li>For each <code>WorkUnit</code> on the list of <code>WorkUnit</code>s to do, creating a task for the <code>WorkUnit</code>, registering the task with the <code>MRTaskStateTracker</code>, and submitting the task to the <code>TaskExecutor</code> to run. Note that the tasks may run in parallel if the <code>TaskExecutor</code> is <a href="../Configuration-Properties-Glossary#taskexecutorthreadpoolsize">configured</a> to have more than one thread in its thread pool.</li>
+<li>Waiting for all the submitted tasks to finish.</li>
+<li>Upon completion of all the submitted tasks, writing out the state of each task into a file that will be read by the <code>MRJobLauncher</code> when collecting task states.</li>
+<li>Going back to step 2 and reading the next input record if available.</li>
+</ol>
+<h2 id="hadoop-mapreduce-deployment">Hadoop MapReduce Deployment <a name="Hadoop-MapReduce-Deployment"></a><a class="headerlink" href="#hadoop-mapreduce-deployment" title="Permanent link">&para;</a></h2>
+<p>Gobblin out-of-the-box ships with a script <code>bin/gobblin-mapreduce.sh</code> for launching a Gobblin job on Hadoop MapReduce. Below is the usage of this launch script:</p>
+<pre><code>Usage: gobblin-mapreduce.sh [OPTION] --conf &lt;job configuration file&gt;
+Where OPTION can be:
+  --jt &lt;job tracker / resource manager URL&gt;      Job submission URL: if not set, taken from ${HADOOP_HOME}/conf
+  --fs &lt;file system URL&gt;                         Target file system: if not set, taken from ${HADOOP_HOME}/conf
+  --jars &lt;comma-separated list of job jars&gt;      Job jar(s): if not set, lib is examined
+  --workdir &lt;job work dir&gt;                       Gobblin's base work directory: if not set, taken from ${GOBBLIN_WORK_DIR}
+  --projectversion &lt;version&gt;                     Gobblin version to be used. If set, overrides the distribution build version
+  --logdir &lt;log dir&gt;                             Gobblin's log directory: if not set, taken from ${GOBBLIN_LOG_DIR} if present. Otherwise ./logs is used
+  --help                                         Display this help and exit
+</code></pre>
+
+<p>It is assumed that you already have Hadoop (both MapReduce and HDFS) setup and running somewhere. Before launching any Gobblin jobs on Hadoop MapReduce, check the Gobblin system configuration file located at <code>conf/gobblin-mapreduce.properties</code> for property <code>fs.uri</code>, which defines the file system URI used. The default value is <code>hdfs://localhost:8020</code>, which points to the local HDFS on the default port 8020. Change it to the right value depending on your Hadoop/HDFS setup. For example, if you have HDFS setup somwhere on port 9000, then set the property as follows:</p>
+<pre><code>fs.uri=hdfs://&lt;namenode host name&gt;:9000/
+</code></pre>
+
+<p>Note that if the option <code>--fs</code> of <code>bin/gobblin-mapreduce.sh</code> is set, the value of <code>--fs</code> should be consistent with the value of <code>fs.uri</code>. </p>
+<p>All job data and persisted job/task states will be written to the specified file system. Before launching any jobs, make sure the environment variable <code>HADOOP_BIN_DIR</code> is set to point to the <code>bin</code> directory under the Hadoop installation directory. Similarly to the standalone deployment, the Hadoop MapReduce deployment also needs a working directory, which can be specified using the command-line option <code>--workdir</code> of <code>bin/gobblin-mapreduce.sh</code> or the environment variable <code>GOBBLIN_WORK_DIR</code>. Note that the Gobblin working directory will be created on the file system specified above. Below is a summary of the environment variables that may be set for deployment on Hadoop MapReduce:</p>
+<ul>
+<li><code>GOBBLIN_WORK_DIR</code>: this variable defines the working directory for Gobblin to operate.</li>
+<li><code>HADOOP_BIN_DIR</code>: this variable defines the path to the <code>bin</code> directory under the Hadoop installation directory.</li>
+</ul>
+<p>This setup will have the minimum set of jars Gobblin needs to run the job added to the Hadoop <code>DistributedCache</code> for use in the mappers. If a job has additional jars needed for task executions (in the mappers), those jars can also be included by using the <code>--jars</code> option of <code>bin/gobblin-mapreduce.sh</code> or the following job configuration property in the job configuration file:</p>
+<pre><code>job.jars=&lt;comma-separated list of jars the job depends on&gt;
+</code></pre>
+
+<p>The <code>--projectversion</code> controls which version of the Gobblin jars to look for. Typically, this value is dynamically set during the build process. Users should use the <code>bin/gobblin-mapreduce.sh</code> script that is copied into the <code>gobblin-distribution-[project-version].tar.gz</code> file. This version of the script has the project version already set, in which case users do not need to specify the <code>--projectversion</code> parameter. If users want to use the <code>gobblin/bin/gobblin-mapreduce.sh</code> script they have to specify this parameter.</p>
+<p>The <code>--logdir</code> parameter controls the directory where log files are written to. If not set log files are written under a the <code>./logs</code> directory.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Gobblin-on-Yarn/" class="btn btn-neutral float-right" title="Gobblin on Yarn">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Working-with-Job-Configuration-Files/" class="btn btn-neutral" title="Job Configuration Files"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Working-with-Job-Configuration-Files/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Gobblin-on-Yarn/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Abhishek Tiwari, Chavdar Botev, Issac Buenrostro, Min Tu, Narasimha Veeramreedy, Pradhan Cadabam, Sahil Takiar, Shirshanka Das, Yinan Li, Ying Dai, Ziyang Liu">
+  
+  <title>Getting Started - Gobblin Documentation</title>
+  
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  <link href="../css/extra.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Getting Started";
+    var mkdocs_page_input_path = "Getting-Started.md";
+    var mkdocs_page_url = "/Getting-Started/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74333035-1', 'gobblin.readthedocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Gobblin Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Getting Started</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#table-of-contents">Table of Contents</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#introduction">Introduction</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#download-and-build">Download and Build</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#run-your-first-job">Run Your First Job</a></li>
+                
+                    <li><a class="toctree-l4" href="#preliminary">Preliminary</a></li>
+                
+                    <li><a class="toctree-l4" href="#steps">Steps</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#other-example-jobs">Other Example Jobs</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../Gobblin-Architecture/">Architecture</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>User Guide</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../user-guide/Working-with-Job-Configuration-Files/">Job Configuration Files</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../user-guide/Gobblin-Deployment/">Deployment</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../user-guide/Gobblin-on-Yarn/">Gobblin on Yarn</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../user-guide/Compaction/">Compaction</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../user-guide/State-Management-and-Watermarks/">State Management and Watermarks</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../user-guide/Working-with-the-ForkOperator/">Fork Operator</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../user-guide/Configuration-Properties-Glossary/">Configuration Glossary</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../user-guide/Partitioned-Writers/">Partitioned Writers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../user-guide/Monitoring/">Monitoring</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../user-guide/Gobblin-Schedulers/">Schedulers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../user-guide/Job-Execution-History-Store/">Job Execution History Store</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../user-guide/Gobblin-Build-Options/">Gobblin Build Options</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../user-guide/Troubleshooting/">Troubleshooting</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../user-guide/FAQs/">FAQs</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Case Studies</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../case-studies/Kafka-HDFS-Ingestion/">Kafka-HDFS Ingestion</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../case-studies/Publishing-Data-to-S3/">Publishing Data to S3</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Gobblin Metrics</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../metrics/Gobblin-Metrics/">Quick Start</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../metrics/Existing-Reporters/">Existing Reporters</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../metrics/Metrics-for-Gobblin-ETL/">Metrics for Gobblin ETL</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../metrics/Gobblin-Metrics-Architecture/">Gobblin Metrics Architecture</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../metrics/Implementing-New-Reporters/">Implementing New Reporters</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../metrics/Gobblin-Metrics-Performance/">Gobblin Metrics Performance</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Developer Guide</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../developer-guide/Customization-for-New-Source/">Customization for New Source</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../developer-guide/Customization-for-Converter-and-Operator/">Customization for Converter and Operator</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../developer-guide/CodingStyle/">Code Style Guide</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../developer-guide/IDE-setup/">IDE setup</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../developer-guide/Monitoring-Design/">Monitoring Design</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Project</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../project/Feature-List/">Feature List</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../project/Team/">Contributors and Team</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../project/Talks-and-Tech-Blogs/">Talks and Tech Blog Posts</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../project/News/">News and Roadmap</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../project/Posts/">Posts</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Miscellaneous</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../miscellaneous/Camus-to-Gobblin-Migration/">Camus to Gobblin Migration</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../miscellaneous/Exactly-Once-Support/">Exactly Once Support</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Gobblin Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Getting Started</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<div class="toc">
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#download-and-build">Download and Build</a></li>
+<li><a href="#run-your-first-job">Run Your First Job</a><ul>
+<li><a href="#preliminary">Preliminary</a></li>
+<li><a href="#steps">Steps</a></li>
+</ul>
+</li>
+<li><a href="#other-example-jobs">Other Example Jobs</a></li>
+</ul>
+</div>
+<h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h1>
+<p>This guide will help you setup Gobblin, and run your first job. Currently, Gobblin requires JDK 7 or later to compile and run.</p>
+<h1 id="download-and-build">Download and Build<a class="headerlink" href="#download-and-build" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Checkout Gobblin:</li>
+</ul>
+<pre><code class="bash">git clone https://github.com/linkedin/gobblin.git
+</code></pre>
+
+<ul>
+<li>Build Gobblin: Gobblin is built using Gradle.</li>
+</ul>
+<pre><code class="bash">cd gobblin
+./gradlew clean build
+</code></pre>
+
+<p>To build against Hadoop 2, add <code>-PuseHadoop2</code>. To skip unit tests, add <code>-x test</code>.</p>
+<h1 id="run-your-first-job">Run Your First Job<a class="headerlink" href="#run-your-first-job" title="Permanent link">&para;</a></h1>
+<p>Here we illustrate how to run a simple job. This job will pull the five latest revisions of each of the four Wikipedia pages: NASA, Linkedin, Parris_Cues and Barbara_Corcoran. A total of 20 records, each corresponding to one revision, should be pulled if the job is successfully run. The records will be stored as Avro files.</p>
+<p>Gobblin can run either in standalone mode or on MapReduce. In this example we will run Gobblin in standalone mode.</p>
+<p>This page explains how to run the job from the terminal. You may also run this job from your favorite IDE (IntelliJ is recommended).</p>
+<h2 id="preliminary">Preliminary<a class="headerlink" href="#preliminary" title="Permanent link">&para;</a></h2>
+<p>Each Gobblin job minimally involves several constructs, e.g. <a href="https://github.com/linkedin/gobblin/blob/master/gobblin-api/src/main/java/gobblin/source/Source.java">Source</a>, <a href="https://github.com/linkedin/gobblin/blob/master/gobblin-api/src/main/java/gobblin/source/extractor/Extractor.java">Extractor</a>, <a href="https://github.com/linkedin/gobblin/blob/master/gobblin-api/src/main/java/gobblin/writer/DataWriter.java">DataWriter</a> and [DataPublisher] (https://github.com/linkedin/gobblin/blob/master/gobblin-api/src/main/java/gobblin/publisher/DataPublisher.java). As the names suggest, Source defines the source to pull data from, Extractor implements the logic to extract data records, DataWriter defines the way the extracted records are output, and DataPublisher publishes the data to the final output location. A job may optionally have one or more Converters, which transform the extracted records, as well as one or more PolicyCheckers that check the quality of the extracted records and determine whether they conform to certain policies.</p>
+<p>Some of the classes relevant to this example include <a href="https://github.com/linkedin/gobblin/blob/master/gobblin-example/src/main/java/gobblin/example/wikipedia/WikipediaSource.java">WikipediaSource</a>, <a href="https://github.com/linkedin/gobblin/blob/master/gobblin-example/src/main/java/gobblin/example/wikipedia/WikipediaExtractor.java">WikipediaExtractor</a>, <a href="https://github.com/linkedin/gobblin/blob/master/gobblin-example/src/main/java/gobblin/example/wikipedia/WikipediaConverter.java">WikipediaConverter</a>, <a href="https://github.com/linkedin/gobblin/blob/master/gobblin-core/src/main/java/gobblin/writer/AvroHdfsDataWriter.java">AvroHdfsDataWriter</a> and [BaseDataPublisher] (https://github.com/linkedin/gobblin/blob/master/gobblin-core/src/main/java/gobblin/publisher/BaseDataPublisher.java).</p>
+<p>To run Gobblin in standalone mode we need a Gobblin configuration file (such as uses <a href="https://github.com/linkedin/gobblin/blob/master/conf/gobblin-standalone.properties">gobblin-standalone.properties</a>). And for each job we wish to run, we also need a job configuration file (such as <a href="https://github.com/linkedin/gobblin/blob/master/gobblin-example/src/main/resources/wikipedia.pull">wikipedia.pull</a>). The Gobblin configuration file, which is passed to Gobblin as a command line argument, should contain a property <code>jobconf.dir</code> which specifies where the job configuration files are located. By default, <code>jobconf.dir</code> points to environment variable <code>GOBBLIN_JOB_CONFIG_DIR</code>. Each file in <code>jobconf.dir</code> with extension <code>.job</code> or <code>.pull</code> is considered a job configuration file, and Gobblin will launch a job for each such file. For more information on Gobblin deployment in standalone mode, refer to the <a href="../user-guide/Gobblin-Deployment#Standalone-Deployment">Standalone Deployment</a> page.</p>
+<p>A list of commonly used configuration properties can be found here: <a href="../user-guide/Configuration-Properties-Glossary">Configuration Properties Glossary</a>.</p>
+<h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Create a folder to store the job configuration file. Put <a href="https://github.com/linkedin/gobblin/blob/master/gobblin-example/src/main/resources/wikipedia.pull">wikipedia.pull</a> in this folder, and set environment variable <code>GOBBLIN_JOB_CONFIG_DIR</code> to point to this folder. Also, make sure that the environment variable <code>JAVA_HOME</code> is set correctly.</p>
+</li>
+<li>
+<p>Create a folder as Gobblin's working directory. Gobblin will write job output as well as other information there, such as locks and state-store (for more information, see the <a href="../user-guide/Gobblin-Deployment#Standalone-Deployment">Standalone Deployment</a> page). Set environment variable <code>GOBBLIN_WORK_DIR</code> to point to that folder.<br />
+<!---stakiar can we list all the folders under gobblin-dist and explain what each folder means --></p>
+</li>
+<li>Unpack Gobblin distribution:</li>
+</ul>
+<pre><code class="bash">tar -zxvf gobblin-dist-[project-version].tar.gz
+cd gobblin-dist
+</code></pre>
+
+<ul>
+<li>Launch Gobblin:</li>
+</ul>
+<pre><code class="bash">bin/gobblin-standalone.sh start
+</code></pre>
+
+<p>This script will launch Gobblin and pass the Gobblin configuration file (<a href="https://github.com/linkedin/gobblin/blob/master/conf/gobblin-standalone.properties">gobblin-standalone.properties</a>) as an argument.</p>
+<p>The job log, which contains the progress and status of the job, will be written into <code>logs/gobblin-current.log</code> (to change where the log is written, modify the Log4j configuration file <code>conf/log4j-standalone.xml</code>). Stdout will be written into <code>nohup.out</code>.</p>
+<p>Among the job logs there should be the following information:</p>
+<pre><code>INFO JobScheduler - Loaded 1 job configuration
+INFO  AbstractJobLauncher - Starting job job_PullFromWikipedia_1422040355678
+INFO  TaskExecutor - Starting the task executor
+INFO  LocalTaskStateTracker2 - Starting the local task state tracker
+INFO  AbstractJobLauncher - Submitting task task_PullFromWikipedia_1422040355678_0 to run
+INFO  TaskExecutor - Submitting task task_PullFromWikipedia_1422040355678_0
+INFO  AbstractJobLauncher - Waiting for submitted tasks of job job_PullFromWikipedia_1422040355678 to complete... to complete...
+INFO  AbstractJobLauncher - 1 out of 1 tasks of job job_PullFromWikipedia_1422040355678 are running
+INFO  WikipediaExtractor - 5 record(s) retrieved for title NASA
+INFO  WikipediaExtractor - 5 record(s) retrieved for title LinkedIn
+INFO  WikipediaExtractor - 5 record(s) retrieved for title Parris_Cues
+INFO  WikipediaExtractor - 5 record(s) retrieved for title Barbara_Corcoran
+INFO  Task - Extracted 20 data records
+INFO  Fork-0 - Committing data of branch 0 of task task_PullFromWikipedia_1422040355678_0
+INFO  LocalTaskStateTracker2 - Task task_PullFromWikipedia_1422040355678_0 completed in 2334ms with state SUCCESSFUL
+INFO  AbstractJobLauncher - All tasks of job job_PullFromWikipedia_1422040355678 have completed
+INFO  TaskExecutor - Stopping the task executor 
+INFO  LocalTaskStateTracker2 - Stopping the local task state tracker
+INFO  AbstractJobLauncher - Publishing job data of job job_PullFromWikipedia_1422040355678 with commit policy COMMIT_ON_FULL_SUCCESS
+INFO  AbstractJobLauncher - Persisting job/task states of job job_PullFromWikipedia_1422040355678
+</code></pre>
+
+<ul>
+<li>After the job is done, stop Gobblin by running</li>
+</ul>
+<pre><code class="bash">bin/gobblin-standalone.sh stop
+</code></pre>
+
+<p>The job output is written in <code>GOBBLIN_WORK_DIR/job-output</code> folder as an Avro file.</p>
+<p>To see the content of the job output, use the Avro tools to convert Avro to JSON. Download the latest version of Avro tools (e.g. avro-tools-1.7.7.jar):</p>
+<pre><code class="bash">curl -O http://central.maven.org/maven2/org/apache/avro/avro-tools/1.7.7/avro-tools-1.7.7.jar
+</code></pre>
+
+<p>and run </p>
+<pre><code class="bash">java -jar avro-tools-1.7.7.jar tojson --pretty [job_output].avro &gt; output.json
+</code></pre>
+
+<p><code>output.json</code> will contain all retrieved records in JSON format.</p>
+<p>Note that since this job configuration file we used (<a href="https://github.com/linkedin/gobblin/blob/master/gobblin-example/src/main/resources/wikipedia.pull">wikipedia.pull</a>) doesn't specify a job schedule, the job will run immediately and will run only once. To schedule a job to run at a certain time and/or repeatedly, set the <code>job.schedule</code> property with a cron-based syntax. For example, <code>job.schedule=0 0/2 * * * ?</code> will run the job every two minutes. See <a href="http://www.quartz-scheduler.org/documentation/quartz-1.x/tutorials/crontrigger">this link</a> (Quartz CronTrigger) for more details.</p>
+<h1 id="other-example-jobs">Other Example Jobs<a class="headerlink" href="#other-example-jobs" title="Permanent link">&para;</a></h1>
+<p>Besides the Wikipedia example, we have another example job <a href="https://github.com/linkedin/gobblin/tree/master/gobblin-example/src/main/java/gobblin/example/simplejson">SimpleJson</a>, which extracts records from JSON files and store them in Avro files.</p>
+<p>To create your own jobs, simply implement the relevant interfaces such as <a href="https://github.com/linkedin/gobblin/blob/master/gobblin-api/src/main/java/gobblin/source/Source.java">Source</a>, <a href="https://github.com/linkedin/gobblin/blob/master/gobblin-api/src/main/java/gobblin/source/extractor/Extractor.java">Extractor</a>, <a href="https://github.com/linkedin/gobblin/blob/master/gobblin-api/src/main/java/gobblin/converter/Converter.java">Converter</a> and <a href="https://github.com/linkedin/gobblin/blob/master/gobblin-api/src/main/java/gobblin/writer/DataWriter.java">DataWriter</a>. In the job configuration file, set properties such as <code>source.class</code> and <code>converter.class</code> to point to these classes.</p>
+<p>On a side note: while users are free to directly implement the Extractor interface (e.g., WikipediaExtractor), Gobblin also provides several extractor implementations based on commonly used protocols, e.g., <a href="https://github.com/linkedin/gobblin/blob/master/gobblin-core/src/main/java/gobblin/source/extractor/extract/restapi/RestApiExtractor.java">RestApiExtractor</a>, <a href="https://github.com/linkedin/gobblin/blob/master/gobblin-core/src/main/java/gobblin/source/extractor/extract/jdbc/JdbcExtractor.java">JdbcExtractor</a>, <a href="https://github.com/linkedin/gobblin/blob/master/gobblin-core/src/main/java/gobblin/source/extractor/extract/sftp/SftpExtractor.java">SftpExtractor</a>, etc. Users are encouraged to extend these classes to take advantage of existing implementations.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Gobblin-Architecture/" class="btn btn-neutral float-right" title="Architecture">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Gobblin-Architecture/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
