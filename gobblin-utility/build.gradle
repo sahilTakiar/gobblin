@@ -22,6 +22,7 @@ dependencies {
   compile externalDependency.commonsLang
   compile externalDependency.guava
   compile externalDependency.slf4j
+  compile externalDependency.log4j
   compile externalDependency.avro
   compile externalDependency.jodaTime
   compile externalDependency.jacksonCore

@@ -37,6 +37,7 @@ public class LoggingUncaughtExceptionHandler implements Thread.UncaughtException
 
   @Override
   public void uncaughtException(Thread t, Throwable e) {
+    System.out.println("uncaught exception!");
     this.logger.error(String.format("Thread %s threw an uncaught exception: %s", t, e), e);
   }
 }

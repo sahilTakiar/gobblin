@@ -22,14 +22,20 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import com.google.common.base.Charsets;
+import org.apache.log4j.BasicConfigurator;
 import org.slf4j.Logger;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
+import lombok.AllArgsConstructor;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -91,12 +97,36 @@ public class ExecutorsUtils {
     return newThreadFactory(new ThreadFactoryBuilder().setDaemon(true), logger, nameFormat);
   }
 
+  /**
+   * This returned {@link ThreadFactory} is backed by a {@link ErrorHandlingThreadFactory}, which will create
+   * {@link Thread}s that convert {@link Error}s to {@link RuntimeException}s.
+   *
+   * <p>
+   *   The above behavior is necessary because a {@link java.lang.Thread.UncaughtExceptionHandler} will not handle
+   *   any {@link Error}s thrown by a {@link Thread}.
+   * </p>
+   */
   private static ThreadFactory newThreadFactory(ThreadFactoryBuilder builder, Optional<Logger> logger,
       Optional<String> nameFormat) {
     if (nameFormat.isPresent()) {
       builder.setNameFormat(nameFormat.get());
     }
     return builder.setUncaughtExceptionHandler(new LoggingUncaughtExceptionHandler(logger)).build();
+  }
+
+  public static void main(String args[]) throws ExecutionException, InterruptedException {
+    final Logger LOG = LoggerFactory.getLogger(ExecutorsUtils.class);
+    BasicConfigurator.configure();
+
+    ExecutorService service =
+        Executors.newSingleThreadExecutor(ExecutorsUtils.newThreadFactory(Optional.of(LOG)));
+    service.execute(new Runnable() {
+      @Override public void run() {
+        LOG.info("Hello World!");
+        throw new ("Throwing Exception!");
+      }
+    });
+    ExecutorsUtils.shutdownExecutorService(service, Optional.<Logger>absent());
   }
 
   /**
@@ -240,5 +270,41 @@ public class ExecutorsUtils {
     }
 
     return results;
+  }
+
+  /**
+   * A {@link ThreadFactory} that creates new {@link Thread}s using a given {@link ThreadFactory}, and wraps the
+   * {@link Thread}s in an {@link ErrorHandlingThread}.
+   */
+  @AllArgsConstructor
+  @VisibleForTesting
+  static class ErrorHandlingThreadFactory implements ThreadFactory {
+
+    private final ThreadFactory threadFactory;
+
+    @Override
+    public Thread newThread(Runnable r) {
+      return new ErrorHandlingThread(this.threadFactory.newThread(r));
+    }
+  }
+
+  /**
+   * A {@link Thread} that converts any {@link Error} thrown by the {@link Thread#run()} method into a
+   * {@link RuntimeException}.
+   */
+  @AllArgsConstructor
+  @VisibleForTesting
+  static class ErrorHandlingThread extends Thread {
+
+    private final Thread thread;
+
+    @Override
+    public void run() {
+      try {
+        this.thread.run();
+      } catch (Error e) {
+        throw new RuntimeException(e);
+      }
+    }
   }
 }
