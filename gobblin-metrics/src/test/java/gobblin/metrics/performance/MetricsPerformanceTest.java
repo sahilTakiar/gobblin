@@ -13,15 +13,12 @@
 package gobblin.metrics.performance;
 
 
-import org.testng.annotations.Test;
-
 import com.google.common.collect.Sets;
 
 
 /**
  * Class for running Gobblin metrics performance tests.
  */
-@Test(groups = { "performance" })
 public class MetricsPerformanceTest {
 
   public void counterPerformance() throws Exception {
@@ -54,4 +51,13 @@ public class MetricsPerformanceTest {
         forkAtDepth(Sets.newHashSet(0, 1, 2, 3)).run();
   }
 
+  public static void main(String args[]) throws Exception {
+    MetricsPerformanceTest metricsPerformanceTest = new MetricsPerformanceTest();
+    metricsPerformanceTest.counterPerformance();
+    metricsPerformanceTest.meterPerformance();
+    metricsPerformanceTest.histogramPerformance();
+    metricsPerformanceTest.timerPerformance();
+    metricsPerformanceTest.parallelizationTest();
+    metricsPerformanceTest.forkLevelPerformance();
+  }
 }
