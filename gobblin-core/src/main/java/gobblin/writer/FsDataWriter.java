@@ -180,6 +180,15 @@ public abstract class FsDataWriter<D> implements DataWriter<D>, FinalState {
     HadoopUtils.renamePath(this.fs, this.stagingFile, this.outputFile);
   }
 
+  @Override
+  public synchronized long bytesWritten() throws IOException {
+    if (!this.fs.exists(this.outputFile)) {
+      return 0;
+    }
+
+    return this.fs.getFileStatus(this.outputFile).getLen();
+  }
+
   /**
    * {@inheritDoc}.
    *
