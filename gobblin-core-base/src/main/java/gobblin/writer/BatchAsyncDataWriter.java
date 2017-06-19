@@ -31,11 +31,11 @@ import gobblin.annotation.Alpha;
  * The write only handles batched records
  */
 @Alpha
-public interface BatchAsyncDataWriter<D> extends Closeable {
+public interface BatchAsyncDataWriter<D, T> extends Closeable {
   /**
    * Asynchronously write a record, execute the callback on success/failure
    */
-  Future<WriteResponse> write(Batch<D> batch, @Nullable WriteCallback callback);
+  Future<WriteResponse<T>> write(Batch<D> batch, @Nullable WriteCallback callback);
 
   /**
    * Flushes all pending batches

@@ -46,7 +46,7 @@ import gobblin.util.ConfigUtils;
  * keeps in the deque until a TTL is expired.
  */
 
-public abstract class SequentialBasedBatchAccumulator<D> extends BatchAccumulator<D> {
+public class SequentialBasedBatchAccumulator<D> extends BatchAccumulator<D> {
 
   private Deque<BytesBoundedBatch<D>> dq = new LinkedList<>();
   private IncompleteRecordBatches incomplete = new IncompleteRecordBatches();

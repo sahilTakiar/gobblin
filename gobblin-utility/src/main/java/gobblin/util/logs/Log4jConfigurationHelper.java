@@ -26,8 +26,6 @@ import java.util.Properties;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.PropertyConfigurator;
 
-import com.google.common.io.Closer;
-
 
 /**
  * A helper class for programmatically configuring log4j.
@@ -37,7 +35,23 @@ import com.google.common.io.Closer;
 public class Log4jConfigurationHelper {
 
   /**
-   * Update the log4j configuration.
+   * Update the log4j configuration by loading the specified log4jFileName as a resource from the classpath of the
+   * targetClass.
+   *
+   * @param targetClass the target class used to get the original log4j configuration file as a resource
+   * @param log4jFileName the custom log4j configuration properties file name
+   * @throws IOException if there's something wrong with updating the log4j configuration
+   */
+  public static void updateLog4jConfiguration(Class<?> targetClass, String log4jFileName)
+          throws IOException {
+    Properties originalProperties = loadLog4jFileFromResource(targetClass, log4jFileName);
+    LogManager.resetConfiguration();
+    PropertyConfigurator.configure(originalProperties);
+  }
+
+  /**
+   * Update the log4j configuration by loading the specified log4jFileName as a resource from the classpath of the
+   * targetClass and then loading log4jPath from the local filesystem.
    *
    * @param targetClass the target class used to get the original log4j configuration file as a resource
    * @param log4jPath the custom log4j configuration properties file path
@@ -45,26 +59,31 @@ public class Log4jConfigurationHelper {
    * @throws IOException if there's something wrong with updating the log4j configuration
    */
   public static void updateLog4jConfiguration(Class<?> targetClass, String log4jPath, String log4jFileName)
-      throws IOException {
-    Closer closer = Closer.create();
-    try {
-      InputStream fileInputStream = closer.register(new FileInputStream(log4jPath));
-      InputStream inputStream = closer.register(targetClass.getResourceAsStream("/" + log4jFileName));
+          throws IOException {
+    Properties customProperties = loadLog4jFile(log4jPath);
+    Properties originalProperties = loadLog4jFileFromResource(targetClass, log4jFileName);
+
+    for (Entry<Object, Object> entry : customProperties.entrySet()) {
+      originalProperties.setProperty(entry.getKey().toString(), entry.getValue().toString());
+    }
+
+    LogManager.resetConfiguration();
+    PropertyConfigurator.configure(originalProperties);
+  }
+
+  private static Properties loadLog4jFile(String log4jPath) throws IOException {
+    try (InputStream fileInputStream = new FileInputStream(log4jPath)) {
       Properties customProperties = new Properties();
       customProperties.load(fileInputStream);
+      return customProperties;
+    }
+  }
+
+  private static Properties loadLog4jFileFromResource(Class<?> targetClass, String log4jFileName) throws IOException {
+    try (InputStream inputStream = targetClass.getResourceAsStream("/" + log4jFileName)) {
       Properties originalProperties = new Properties();
       originalProperties.load(inputStream);
-
-      for (Entry<Object, Object> entry : customProperties.entrySet()) {
-        originalProperties.setProperty(entry.getKey().toString(), entry.getValue().toString());
-      }
-
-      LogManager.resetConfiguration();
-      PropertyConfigurator.configure(originalProperties);
-    } catch (Throwable t) {
-      throw closer.rethrow(t);
-    } finally {
-      closer.close();
+      return originalProperties;
     }
   }
 }

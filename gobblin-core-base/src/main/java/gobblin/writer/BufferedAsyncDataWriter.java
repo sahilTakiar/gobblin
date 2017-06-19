@@ -42,7 +42,7 @@ import gobblin.annotation.Alpha;
  * @param <D> data record type
  */
 @Alpha
-public abstract class BufferedAsyncDataWriter<D> implements AsyncDataWriter<D> {
+public class BufferedAsyncDataWriter<D, T> implements AsyncDataWriter<D> {
 
   private RecordProcessor<D> processor;
   private BatchAccumulator<D> accumulator;
@@ -75,7 +75,7 @@ public abstract class BufferedAsyncDataWriter<D> implements AsyncDataWriter<D> {
         }
       };
 
-  public BufferedAsyncDataWriter (BatchAccumulator<D> accumulator, BatchAsyncDataWriter<D> dataWriter) {
+  public BufferedAsyncDataWriter (BatchAccumulator<D> accumulator, BatchAsyncDataWriter<D, T> dataWriter) {
     this.processor = new RecordProcessor (accumulator, dataWriter);
     this.accumulator = accumulator;
     this.service = Executors.newFixedThreadPool(1);
@@ -91,13 +91,13 @@ public abstract class BufferedAsyncDataWriter<D> implements AsyncDataWriter<D> {
 
   private class RecordProcessor<D> implements Runnable, Closeable{
     BatchAccumulator<D> accumulator;
-    BatchAsyncDataWriter<D> writer;
+    BatchAsyncDataWriter<D, T> writer;
 
     public void close() throws IOException {
       this.writer.close();
     }
 
-    public RecordProcessor (BatchAccumulator<D> accumulator, BatchAsyncDataWriter<D> writer) {
+    public RecordProcessor (BatchAccumulator<D> accumulator, BatchAsyncDataWriter<D, T> writer) {
       this.accumulator = accumulator;
       this.writer = writer;
     }

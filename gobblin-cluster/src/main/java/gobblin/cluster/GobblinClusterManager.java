@@ -439,6 +439,8 @@ public class GobblinClusterManager implements ApplicationLauncher {
           .registerMessageHandlerFactory(Message.MessageType.USER_DEFINE_MSG.toString(),
               getUserDefinedMessageHandlerFactory());
 
+      Thread.sleep(1000);
+
       // standalone mode listens for controller change
       if (this.isStandaloneMode) {
         // Subscribe to leadership changes
@@ -721,7 +723,6 @@ public class GobblinClusterManager implements ApplicationLauncher {
       }
 
       Log4jConfigurationHelper.updateLog4jConfiguration(GobblinClusterManager.class,
-          GobblinClusterConfigurationKeys.GOBBLIN_CLUSTER_LOG4J_CONFIGURATION_FILE,
           GobblinClusterConfigurationKeys.GOBBLIN_CLUSTER_LOG4J_CONFIGURATION_FILE);
 
       LOGGER.info(JvmUtils.getJvmInputArguments());
